@@ -30,25 +30,25 @@ const baseURL = window.location.hostname === "localhost"
         zoom: 3 // 초기 줌 레벨
     });
 
-    // GeoJSON 파일을 지도에 추가하는 코드 예시
     map.on('load', () => {
-    // GeoJSON 소스 추가
-    map.addSource('amazon-geojson-source', {
-        type: 'geojson',
-        data: `${baseURL}/Grocery,Meal.geojson` // 정확한 파일 경로로 수정
-    });
+        // GeoJSON 소스 추가
+        map.addSource('geojson-source', {
+            type: 'geojson',
+            data: `${baseURL}/Package/Amazon.geojson`
+        });
 
-    // GeoJSON 데이터를 위한 레이어 추가
-    map.addLayer({
-        id: 'amazon-geojson-layer',
-        type: 'fill', // 채우기 스타일로 표시
-        source: 'amazon-geojson-source',
-        paint: {
-            'fill-color': '#00FF00', // GeoJSON 영역 색상 (초록색으로 예시 변경)
-            'fill-opacity': 0.6 // 투명도 설정
-        }
+        // 원(circle) 레이어 추가
+        map.addLayer({
+            id: 'circle-layer',
+            type: 'circle',
+            source: 'geojson-source',
+            paint: {
+                'circle-radius': 5, // 원의 반지름 (값을 조정하여 크기 설정)
+                'circle-color': '#FF5733', // 원의 색상
+                'circle-opacity': 0.8 // 원의 투명도
+            }
+        });
     });
-});
 
 </script>
 
