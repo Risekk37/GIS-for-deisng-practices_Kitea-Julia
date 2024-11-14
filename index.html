@@ -16,10 +16,16 @@
 
 <script src="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js"></script>
 <script>
+
+const baseURL = window.location.hostname === "localhost" 
+    ? "" // 로컬 환경에서는 빈 문자열을 사용하여 상대 경로를 사용
+    : "https://risekk37.github.io/GIS-for-deisng-practices_Kitea-Julia"; // GitHub Pages 절대 경로
+
+
     // MapLibre GL JS 초기화
     const map = new maplibregl.Map({
         container: 'map',
-        style: 'https://risekk37.github.io/GIS-for-deisng-practices_Kitea-Julia/Positron.json', // Maputnik에서 만든 style.json 파일 경로
+        style: `${baseURL}/positron.json`, // Maputnik에서 만든 style.json 파일 경로
         center: [-74.0060, 40.7128], // 초기 중심 좌표 (예: 뉴욕시)
         zoom: 3 // 초기 줌 레벨
     });
@@ -29,7 +35,7 @@
     // GeoJSON 소스 추가
     map.addSource('amazon-geojson-source', {
         type: 'geojson',
-        data: 'Grocery,Meal.geojson' // 정확한 파일 경로로 수정
+        data: `${baseURL}/Grocery,Meal.geojson` // 정확한 파일 경로로 수정
     });
 
     // GeoJSON 데이터를 위한 레이어 추가
