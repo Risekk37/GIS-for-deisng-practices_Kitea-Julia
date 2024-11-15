@@ -4,53 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MapLibre with Maputnik Style</title>
-    <link href="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css" rel="stylesheet" />
-    <style>
-        body { margin: 0; padding: 0; }
-        #map { width: 100%; height: 100vh; }
-    </style>
+    <link href="style.css" rel="stylesheet" />
 </head>
 <body>
 
-<div id="map"></div>
+<!-- 맵과 텍스트를 포함한 섹션 -->
+<div id="map-container">
+    <div id="map1" class="map"></div>
+    <div id="map2" class="map"></div>
+    <div id="map3" class="map"></div>
+    <div id="mapA" class="map"></div>
+    <div id="mapB" class="map"></div>
+    <div id="mapC" class="map"></div>
+    <div id="mapD" class="map"></div>
+</div>
+
+<!-- 각 맵에 해당하는 텍스트 -->
+<div id="text1" class="text">
+    <p>여기에는 첫 번째 맵에 대한 설명이 들어갑니다.</p>
+</div>
+<div id="text2" class="text">
+    <p>여기에는 두 번째 맵에 대한 설명이 들어갑니다.</p>
+</div>
+<div id="text3" class="text">
+    <p>여기에는 세 번째 맵에 대한 설명이 들어갑니다.</p>
+</div>
+<div id="textA" class="text">
+    <p>여기에는 A 맵에 대한 설명이 들어갑니다.</p>
+</div>
+<div id="textB" class="text">
+    <p>여기에는 B 맵에 대한 설명이 들어갑니다.</p>
+</div>
+<div id="textC" class="text">
+    <p>여기에는 C 맵에 대한 설명이 들어갑니다.</p>
+</div>
+<div id="textD" class="text">
+    <p>여기에는 D 맵에 대한 설명이 들어갑니다.</p>
+</div>
 
 <script src="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js"></script>
-<script>
-
-const baseURL = window.location.hostname === "localhost" 
-    ? "" // 로컬 환경에서는 빈 문자열을 사용하여 상대 경로를 사용
-    : "https://risekk37.github.io/GIS-for-deisng-practices_Kitea-Julia"; // GitHub Pages 절대 경로
-
-
-    // MapLibre GL JS 초기화
-    const map = new maplibregl.Map({
-        container: 'map',
-        style: `${baseURL}/positron.json`, // Maputnik에서 만든 style.json 파일 경로
-        center: [-74.0060, 40.7128], // 초기 중심 좌표 (예: 뉴욕시)
-        zoom: 3 // 초기 줌 레벨
-    });
-
-    map.on('load', () => {
-        // GeoJSON 소스 추가
-        map.addSource('geojson-source', {
-            type: 'geojson',
-            data: `${baseURL}/Package/Amazon.geojson`
-        });
-
-        // 원(circle) 레이어 추가
-        map.addLayer({
-            id: 'circle-layer',
-            type: 'circle',
-            source: 'geojson-source',
-            paint: {
-                'circle-radius': 5, // 원의 반지름 (값을 조정하여 크기 설정)
-                'circle-color': '#FF5733', // 원의 색상
-                'circle-opacity': 0.8 // 원의 투명도
-            }
-        });
-    });
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
