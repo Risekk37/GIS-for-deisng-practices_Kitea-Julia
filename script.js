@@ -246,7 +246,7 @@ map2.on('load', () => {
 
         map4.addSource('UberEats', {
             type: 'geojson',
-            data: `${baseURL}/Meal/Uber_Eats_C.geojson`,
+            data: `${baseURL}/Meal/Uber_Eats_C.json`,
 
         });
         map4.addLayer({
