@@ -29,6 +29,15 @@ const map3 = new maplibregl.Map({
     dragPan: false
 });
 
+const map4 = new maplibregl.Map({
+    container: 'map4',
+    style: `${baseURL}/positron.json`,
+    center: [-90.3070003, 40.2892984],
+    zoom: 3.8,
+    scrollZoom: false,
+    dragPan: false
+});
+
 map2.on('load', () => {
     map2.addSource('Amazon', {
         type: 'geojson',
@@ -75,7 +84,7 @@ map2.on('load', () => {
             source: 'Target',
             paint: {
                 'circle-radius': 1,              // 원의 크기
-                'circle-color': '#FFD800',       // 원의 내부 색상
+                'circle-color': '#cc0000',       // 원의 내부 색상
                 'circle-opacity': 1            // 원의 투명도
             }
         });
@@ -88,9 +97,10 @@ map2.on('load', () => {
             paint: {
                 'circle-radius': 2.5,            // 원의 크기
                 'circle-color': 'rgba(0, 0, 0, 0)',  // 원의 내부 색상을 투명하게 설정
-                'circle-stroke-width': 1,       // 테두리 두께 설정
-                'circle-stroke-color': '#FFffff',  // 테두리 색상 설정
-                'circle-opacity': 0.4           // 원의 투명도 설정
+                'circle-stroke-width': 0.5,       // 테두리 두께 설정
+                'circle-stroke-color': '#cc0000',  // 테두리 색상 설정
+                'circle-opacity': 0.0,
+                'circle-stroke-opacity': 0.5            // 원의 투명도 설정
             }
         });
         map3.addSource('Trader', {
@@ -103,12 +113,24 @@ map2.on('load', () => {
             type: 'circle',
             source: 'Trader',
             paint: {
-                'circle-radius': 2,
-                'circle-color': '#FFD800',
-                'circle-opacity': 0.4
+                'circle-radius': 1,
+                'circle-color': '#ff69b4',
+                'circle-opacity': 1
             }
         });
-    
+        map3.addLayer({
+            id: 'Trader-Circle-Stroke',
+            type: 'circle',
+            source: 'Trader',
+            paint: {
+                'circle-radius': 2.5,            // 원의 크기
+                'circle-color': 'rgba(0, 0, 0, 0)',  // 원의 내부 색상을 투명하게 설정
+                'circle-stroke-width': 0.5,       // 테두리 두께 설정
+                'circle-stroke-color': '#ff69b4',  // 테두리 색상 설정
+                'circle-opacity': 0.0,
+                'circle-stroke-opacity': 0.5            // 원의 투명도 설정
+            }
+        });
         map3.addSource('Walmart', {
             type: 'geojson',
             data: `${baseURL}/Grocery/Walmart_Location.geojson`
@@ -119,9 +141,22 @@ map2.on('load', () => {
             type: 'circle',
             source: 'Walmart',
             paint: {
-                'circle-radius': 2,
-                'circle-color': '#FFD800',
-                'circle-opacity': 0.4
+                'circle-radius': 1,
+                'circle-color': '#ffc220',
+                'circle-opacity': 1
+            }
+        });
+        map3.addLayer({
+            id: 'Walmart-Circle-Stroke',
+            type: 'circle',
+            source: 'Walmart',
+            paint: {
+                'circle-radius': 2.5,            // 원의 크기
+                'circle-color': 'rgba(0, 0, 0, 0)',  // 원의 내부 색상을 투명하게 설정
+                'circle-stroke-width': 0.5,       // 테두리 두께 설정
+                'circle-stroke-color': '#ffc220',  // 테두리 색상 설정
+                'circle-opacity': 0.0,
+                'circle-stroke-opacity': 0.5           // 원의 투명도 설정
             }
         });
     
@@ -135,12 +170,108 @@ map2.on('load', () => {
             type: 'circle',
             source: 'Whole',
             paint: {
-                'circle-radius': 2,
-                'circle-color': '#FFD800',
-                'circle-opacity': 0.4
+                'circle-radius': 1,
+                'circle-color': '#00674b',
+                'circle-opacity': 1
+            }
+        });
+        map3.addLayer({
+            id: 'Whole-Circle-Stroke',
+            type: 'circle',
+            source: 'Whole',
+            paint: {
+                'circle-radius': 2.5,                // 원의 크기
+                'circle-color': 'rgba(0, 0, 0, 0)',   // 원의 내부 색상을 투명하게 설정
+                'circle-stroke-width': 0.5,             // 테두리 두께 설정
+                'circle-stroke-color': '#00674b',     // 테두리 색상 설정
+                'circle-opacity': 0.0,                // 원의 투명도 설정
+                'circle-stroke-opacity': 0.5          // 원의 투명도 설정
             }
         });
     });
+
+    map4.on('load', () => {
+        map4.addSource('DoorDash', {
+            type: 'geojson',
+            data: `${baseURL}/Meal/Door_Dash_C.geojson`,
+        });
+        map4.addLayer({
+            id: 'DoorDash-Fill',
+            type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
+            source: 'DoorDash',
+            paint: {
+                'fill-color': '#FFD800',    // 다각형 영역 색상
+                'fill-opacity': 0.4         // 투명도 설정
+            }
+        });
+    
+        // 다각형 테두리를 설정하려면 'fill-outline-color' 사용
+        map4.addLayer({
+            id: 'DoorDash-Fill-Outline',
+            type: 'line',   // 테두리 표시를 위해 line 타입 사용
+            source: 'DoorDash',
+            paint: {
+                'line-color': '#FF9900',   // 테두리 색상
+                'line-width': 2            // 테두리 두께
+            }
+        });
+
+        map4.addSource('GrubHub', {
+            type: 'geojson',
+            data: `${baseURL}/Meal/Grub_Hub.geojson`,
+            // 'filter' 옵션을 사용해 "Door_dash2_Num_index"가 5인 것만 표시
+            filter: ['==', ['get', 'Grub_hub2_Num_index'], 5]
+        });
+        map4.addLayer({
+            id: 'GrubHub-Fill',
+            type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
+            source: 'GrubHub',
+            paint: {
+                'fill-color': '#FFD800',    // 다각형 영역 색상
+                'fill-opacity': 0.4         // 투명도 설정
+            }
+        });
+    
+        // 다각형 테두리를 설정하려면 'fill-outline-color' 사용
+        map4.addLayer({
+            id: 'GrubHub-Fill-Outline',
+            type: 'line',   // 테두리 표시를 위해 line 타입 사용
+            source: 'GrubHub',
+            paint: {
+                'line-color': '#FF9900',   // 테두리 색상
+                'line-width': 2            // 테두리 두께
+            }
+        });
+
+        map4.addSource('UberEats', {
+            type: 'geojson',
+            data: `${baseURL}/Meal/Uber_Eats.geojson`,
+            // 'filter' 옵션을 사용해 "Door_dash2_Num_index"가 5인 것만 표시
+            filter: ['==', ['get', 'Uber_eats2_Num_index'], 5]
+        });
+        map4.addLayer({
+            id: 'UberEats-Fill',
+            type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
+            source: 'UberEats',
+            paint: {
+                'fill-color': '#FFD800',    // 다각형 영역 색상
+                'fill-opacity': 0.4         // 투명도 설정
+            }
+        });
+    
+        // 다각형 테두리를 설정하려면 'fill-outline-color' 사용
+        map4.addLayer({
+            id: 'UberEats-Fill-Outline',
+            type: 'line',   // 테두리 표시를 위해 line 타입 사용
+            source: 'UberEats',
+            paint: {
+                'line-color': '#FF9900',   // 테두리 색상
+                'line-width': 2            // 테두리 두께
+            }
+        });
+    });
+    
+
 
     const toggleAmazonButton = document.getElementById('toggleAmazon');
     toggleAmazonButton.addEventListener('click', () => {
@@ -165,18 +296,21 @@ map2.on('load', () => {
     toggleTraderButton.addEventListener('click', () => {
         const currentVisibility = map3.getLayer('Trader-Circle') ? map3.getLayer('Trader-Circle').visibility : 'visible';
         map3.setLayoutProperty('Trader-Circle', 'visibility', currentVisibility === 'visible' ? 'none' : 'visible');
+        map3.setLayoutProperty('Trader-Circle-Stroke', 'visibility', currentVisibility === 'visible' ? 'none' : 'visible');
     });
 
     const toggleWalmartButton = document.getElementById('toggleWalmart');
     toggleWalmartButton.addEventListener('click', () => {
         const currentVisibility = map3.getLayer('Walmart-Circle') ? map3.getLayer('Walmart-Circle').visibility : 'visible';
         map3.setLayoutProperty('Walmart-Circle', 'visibility', currentVisibility === 'visible' ? 'none' : 'visible');
+        map3.setLayoutProperty('Walmart-Circle-Stroke', 'visibility', currentVisibility === 'visible' ? 'none' : 'visible');
     });
 
     const toggleWholeButton = document.getElementById('toggleWhole');
     toggleWholeButton.addEventListener('click', () => {
         const currentVisibility = map3.getLayer('Whole-Circle') ? map3.getLayer('Whole-Circle').visibility : 'visible';
         map3.setLayoutProperty('Whole-Circle', 'visibility', currentVisibility === 'visible' ? 'none' : 'visible');
+        map3.setLayoutProperty('Whole-Circle-Stroke', 'visibility', currentVisibility === 'visible' ? 'none' : 'visible');
     });
 
 
