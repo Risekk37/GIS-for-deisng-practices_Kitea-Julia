@@ -200,7 +200,7 @@ map2.on('load', () => {
             type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
             source: 'DoorDash',
             paint: {
-                'fill-color': '#FFD800',    // 다각형 영역 색상
+                'fill-color': '#EB1700',    // 다각형 영역 색상
                 'fill-opacity': 0.4         // 투명도 설정
             }
         });
@@ -211,23 +211,23 @@ map2.on('load', () => {
             type: 'line',   // 테두리 표시를 위해 line 타입 사용
             source: 'DoorDash',
             paint: {
-                'line-color': '#FF9900',   // 테두리 색상
-                'line-width': 2            // 테두리 두께
+                'line-color': '#EB1700',   // 테두리 색상
+                'line-width': 2,
+                'line-opacity':0            // 테두리 두께
             }
         });
 
         map4.addSource('GrubHub', {
             type: 'geojson',
-            data: `${baseURL}/Meal/Grub_Hub.geojson`,
-            // 'filter' 옵션을 사용해 "Door_dash2_Num_index"가 5인 것만 표시
-            filter: ['==', ['get', 'Grub_hub2_Num_index'], 5]
+            data: `${baseURL}/Meal/Grub_Hub_C.geojson`,
+
         });
         map4.addLayer({
             id: 'GrubHub-Fill',
             type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
             source: 'GrubHub',
             paint: {
-                'fill-color': '#FFD800',    // 다각형 영역 색상
+                'fill-color': '#ff8000',    // 다각형 영역 색상
                 'fill-opacity': 0.4         // 투명도 설정
             }
         });
@@ -239,22 +239,22 @@ map2.on('load', () => {
             source: 'GrubHub',
             paint: {
                 'line-color': '#FF9900',   // 테두리 색상
-                'line-width': 2            // 테두리 두께
+                'line-width': 2,
+                'line-opacity':0             // 테두리 두께
             }
         });
 
         map4.addSource('UberEats', {
             type: 'geojson',
-            data: `${baseURL}/Meal/Uber_Eats.geojson`,
-            // 'filter' 옵션을 사용해 "Door_dash2_Num_index"가 5인 것만 표시
-            filter: ['==', ['get', 'Uber_eats2_Num_index'], 5]
+            data: `${baseURL}/Meal/Uber_Eats_C.geojson`,
+
         });
         map4.addLayer({
             id: 'UberEats-Fill',
             type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
             source: 'UberEats',
             paint: {
-                'fill-color': '#FFD800',    // 다각형 영역 색상
+                'fill-color': '#06c167',    // 다각형 영역 색상
                 'fill-opacity': 0.4         // 투명도 설정
             }
         });
@@ -266,7 +266,8 @@ map2.on('load', () => {
             source: 'UberEats',
             paint: {
                 'line-color': '#FF9900',   // 테두리 색상
-                'line-width': 2            // 테두리 두께
+                'line-width': 2,
+                'line-opacity':0             // 테두리 두께
             }
         });
     });
@@ -313,6 +314,31 @@ map2.on('load', () => {
         map3.setLayoutProperty('Whole-Circle-Stroke', 'visibility', currentVisibility === 'visible' ? 'none' : 'visible');
     });
 
+    const toggleDoorDashButton = document.getElementById('toggleDoorDash');
+    toggleDoorDashButton.addEventListener('click', () => {
+        const currentVisibility = map4.getLayoutProperty('DoorDash-Fill', 'visibility') === 'visible' ? 'visible' : 'none';
+        const newVisibility = currentVisibility === 'visible' ? 'none' : 'visible';
+        map4.setLayoutProperty('DoorDash-Fill', 'visibility', newVisibility);
+        map4.setLayoutProperty('DoorDash-Fill-Outline', 'visibility', newVisibility);
+    });
+
+    // GrubHub 레이어 토글
+    const toggleGrubHubButton = document.getElementById('toggleGrubHub');
+    toggleGrubHubButton.addEventListener('click', () => {
+        const currentVisibility = map4.getLayoutProperty('GrubHub-Fill', 'visibility') === 'visible' ? 'visible' : 'none';
+        const newVisibility = currentVisibility === 'visible' ? 'none' : 'visible';
+        map4.setLayoutProperty('GrubHub-Fill', 'visibility', newVisibility);
+        map4.setLayoutProperty('GrubHub-Fill-Outline', 'visibility', newVisibility);
+    });
+
+    // UberEats 레이어 토글
+    const toggleUberEatsButton = document.getElementById('toggleUberEats');
+    toggleUberEatsButton.addEventListener('click', () => {
+        const currentVisibility = map4.getLayoutProperty('UberEats-Fill', 'visibility') === 'visible' ? 'visible' : 'none';
+        const newVisibility = currentVisibility === 'visible' ? 'none' : 'visible';
+        map4.setLayoutProperty('UberEats-Fill', 'visibility', newVisibility);
+        map4.setLayoutProperty('UberEats-Fill-Outline', 'visibility', newVisibility);
+    });
 
 let scrollPosition = 0;
 let currentMap = 1;
