@@ -23,13 +23,28 @@ body {
 
 .text {
     position: absolute;
-    top: 20px;
-    left: 20px;
-    background-color: rgba(0, 0, 0, 0.5);
+    top: 60vh;
+    right: 3%;
+    background-color: rgba(0, 0, 0, 0);
     color: white;
     padding: 10px;
-    font-size: 16px;
     display: none;
+    
+}
+
+.text h2 {
+    font-size: 4vh;
+    margin-bottom: 10px;
+    white-space: pre;
+    text-align: right;
+}
+
+.text p {
+    font-size: 2vh;
+    white-space: pre;
+    text-align: right;
+    
+
 }
 
 #map1 {
