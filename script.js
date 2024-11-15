@@ -60,8 +60,8 @@ const map6 = new maplibregl.Map({
 const map7 = new maplibregl.Map({
     container: 'map7',
     style: `${baseURL}/positron.json`,
-    center: [-90.3070003, 40.2892984],
-    zoom: 3.8,
+    center: [-79.32787967776974, 35.59208970407508],
+    zoom:10,
     scrollZoom: false,
     dragPan: false
 });
@@ -69,8 +69,8 @@ const map7 = new maplibregl.Map({
 const map8 = new maplibregl.Map({
     container: 'map8',
     style: `${baseURL}/positron.json`,
-    center: [-90.3070003, 40.2892984],
-    zoom: 3.8,
+    center: [-95.79896976107271, 29.400411958015386],
+    zoom: 10,
     scrollZoom: false,
     dragPan: false
 });
@@ -78,8 +78,8 @@ const map8 = new maplibregl.Map({
 const map9 = new maplibregl.Map({
     container: 'map9',
     style: `${baseURL}/positron.json`,
-    center: [-90.3070003, 40.2892984],
-    zoom: 3.8,
+    center: [-80.8254136437971, 27.338284463119106],
+    zoom: 10,
     scrollZoom: false,
     dragPan: false
 });
@@ -933,7 +933,7 @@ window.addEventListener('wheel', function(event) {
     scrollPosition += event.deltaY;
 
     if (currentMap >= 1 && currentMap <= 9) {
-        if (scrollPosition >= SCROLL_THRESHOLD && currentMap < 8) {
+        if (scrollPosition >= SCROLL_THRESHOLD && currentMap < 10) {
             currentMap++;
             scrollPosition = 0;
         } else if (scrollPosition <= -SCROLL_THRESHOLD && currentMap > 1) {
