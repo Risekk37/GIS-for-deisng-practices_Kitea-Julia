@@ -714,6 +714,8 @@ map2.on('load', () => {
                 'line-color': '#EB1700',   // 테두리 색상
                 'line-width': 2,
                 'line-opacity':0             // 테두리 두께
+            },layout: {
+                'visibility': 'visible'  // Explicitly set visibility to visible
             }
         });
         map7.addLayer({
@@ -724,6 +726,8 @@ map2.on('load', () => {
                 'circle-radius': 1,
                 'circle-color': '#ffffff',
                 'circle-opacity': 1
+            },layout: {
+                'visibility': 'visible'  // Explicitly set visibility to visible
             }
         });
     });
@@ -749,6 +753,8 @@ map2.on('load', () => {
                 'line-color': '#EB1700',   // 테두리 색상
                 'line-width': 2,
                 'line-opacity':0             // 테두리 두께
+            },layout: {
+                'visibility': 'visible'  // Explicitly set visibility to visible
             }
         });
         map8.addLayer({
@@ -759,6 +765,8 @@ map2.on('load', () => {
                 'circle-radius': 1,
                 'circle-color': '#ffffff',
                 'circle-opacity': 1
+            },layout: {
+                'visibility': 'visible'  // Explicitly set visibility to visible
             }
         });
     });
@@ -784,6 +792,8 @@ map2.on('load', () => {
                 'line-color': '#EB1700',   // 테두리 색상
                 'line-width': 2,
                 'line-opacity':0             // 테두리 두께
+            },layout: {
+                'visibility': 'visible'  // Explicitly set visibility to visible
             }
         });
         map9.addLayer({
@@ -794,6 +804,8 @@ map2.on('load', () => {
                 'circle-radius': 1,
                 'circle-color': '#ffffff',
                 'circle-opacity': 1
+            },layout: {
+                'visibility': 'visible'  // Explicitly set visibility to visible
             }
         });
     });
