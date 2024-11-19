@@ -578,7 +578,7 @@ map2.on('load', () => {
     map6.on('load', () => {
         map6.addSource('D_GM', {
             type: 'geojson',
-            data: `${baseURL}/Delivery_Desert/GM_P_4.geojson`,
+            data: `${baseURL}/Delivery_Desert/GM_P_3.geojson`,
 
         });
         map6.addLayer({
