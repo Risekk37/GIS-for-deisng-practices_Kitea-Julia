@@ -445,7 +445,7 @@ map2.on('load', () => {
             type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
             source: 'UberEats',
             paint: {
-                'fill-color': '#06c167',    // 다각형 영역 색상
+                'fill-color': '#4CFFB4',    // 다각형 영역 색상
                 'fill-opacity': 0.7         // 투명도 설정
             }
         });
@@ -472,7 +472,7 @@ map2.on('load', () => {
             type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
             source: 'GrubHub',
             paint: {
-                'fill-color': '#ff8000',    // 다각형 영역 색상
+                'fill-color': '#FFA943',    // 다각형 영역 색상
                 'fill-opacity': 0.7         // 투명도 설정
             }
         });
@@ -519,7 +519,7 @@ map2.on('load', () => {
     map5.on('load', () => {
         map5.addSource('GM', {
             type: 'geojson',
-            data: `${baseURL}/Delivery_Desert/GM_P_1.geojson`,
+            data: `${baseURL}/Delivery_Desert/GM_P_1.json`,
 
         });
         map5.addLayer({
@@ -537,7 +537,7 @@ map2.on('load', () => {
     
         map5.addSource('GM2', {
             type: 'geojson',
-            data: `${baseURL}/Delivery_Desert/GM_P_2.geojson`,
+            data: `${baseURL}/Delivery_Desert/GM_P_2.json`,
 
         });
         map5.addLayer({
@@ -556,7 +556,7 @@ map2.on('load', () => {
        
         map5.addSource('GM3', {
             type: 'geojson',
-            data: `${baseURL}/Delivery_Desert/GM_P_3.geojson`,
+            data: `${baseURL}/Delivery_Desert/GM_P_3.json`,
 
         });
         map5.addLayer({
@@ -571,43 +571,6 @@ map2.on('load', () => {
                 'visibility': 'visible'  // Set the visibility when adding the layer
             }
         });
-    
-        
-        map5.addSource('GM4', {
-            type: 'geojson',
-            data: `${baseURL}/Delivery_Desert/GM_P_4.geojson`,
-
-        });
-        map5.addLayer({
-            id: 'GM4-Fill',
-            type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
-            source: 'GM4',
-            paint: {
-                'fill-color': '#EB1700',    // 다각형 영역 색상
-                'fill-opacity': 0.4         // 투명도 설정
-            }
-        });
-    
-       
-        map5.addSource('GM5', {
-            type: 'geojson',
-            data: `${baseURL}/Delivery_Desert/GM_P_5.geojson`,
-
-        });
-        map5.addLayer({
-            id: 'GM5-Fill',
-            type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
-            source: 'GM5',
-            paint: {
-                'fill-color': '#EB1700',    // 다각형 영역 색상
-                'fill-opacity': 0.4         // 투명도 설정
-            },
-            layout: {
-                'visibility': 'visible'  // Set the visibility when adding the layer
-            }
-        });
-
-        
     });
    
 
@@ -918,17 +881,21 @@ map2.on('load', () => {
         const newVisibility = currentVisibility === 'visible' ? 'none' : 'visible';
         map5.setLayoutProperty('GM3-Fill', 'visibility', newVisibility);
     });
-    const toggleGM4Button = document.getElementById('toggleGM4');
-    toggleGM4Button.addEventListener('click', () => {
-        const currentVisibility = map5.getLayoutProperty('GM4-Fill', 'visibility') === 'visible' ? 'visible' : 'none';
+
+    const toggleD_GM7Button = document.getElementById('toggleD_GM7');
+    toggleD_GM7Button.addEventListener('click', () => {
+        const currentVisibility = map6.getLayoutProperty('P_R_P-Fill-Outline', 'visibility') === 'visible' ? 'visible' : 'none';
         const newVisibility = currentVisibility === 'visible' ? 'none' : 'visible';
-        map5.setLayoutProperty('GM4-Fill', 'visibility', newVisibility);
+        map6.setLayoutProperty('P_R_P-Fill-Outline', 'visibility', newVisibility);
     });
-    const toggleGM5Button = document.getElementById('toggleGM5');
-    toggleGM5Button.addEventListener('click', () => {
-        const currentVisibility = map5.getLayoutProperty('GM5-Fill', 'visibility') === 'visible' ? 'visible' : 'none';
+
+
+
+    const toggleF_D_GM_P7Button = document.getElementById('toggleF_D_GM_P7');
+    toggleF_D_GM_P7Button.addEventListener('click', () => {
+        const currentVisibility = map6.getLayoutProperty('G_P_Cirlce', 'visibility') === 'visible' ? 'visible' : 'none';
         const newVisibility = currentVisibility === 'visible' ? 'none' : 'visible';
-        map5.setLayoutProperty('GM5-Fill', 'visibility', newVisibility);
+        map6.setLayoutProperty('G_P_Cirlce', 'visibility', newVisibility);
     });
 
 let scrollPosition = 0;
