@@ -578,9 +578,11 @@ map2.on('load', () => {
     map6.on('load', () => {
         map6.addSource('D_GM', {
             type: 'geojson',
-            data: `${baseURL}/Delivery_Desert/GM_P_3.geojson`,
+            data: `${baseURL}/Delivery_Desert/GM_P_3.json`,
 
         });
+
+        
         map6.addLayer({
             id: 'D_GM-Fill',
             type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
@@ -635,23 +637,45 @@ map2.on('load', () => {
         });
         map6.addLayer({
             id: 'F_D_GM_P-Fill',
-            type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
+            type: 'fill',
             source: 'F_D_GM_P',
             paint: {
-                'fill-color': '#EB1700',    // 다각형 영역 색상
-                'fill-opacity': 0.7         // 투명도 설정
-            }
+                'fill-color': '#EB1700', // 다각형 영역 색상
+                'fill-opacity': 0.7,    // 투명도 설정
+            },
         });
-    
-        // 다각형 테두리를 설정하려면 'fill-outline-color' 사용
+        
+        // 다각형 테두리 추가
         map6.addLayer({
             id: 'F_D_GM_P-Fill-Outline',
-            type: 'line',   // 테두리 표시를 위해 line 타입 사용
+            type: 'line',
             source: 'F_D_GM_P',
             paint: {
-                'line-color': '#ffffff',   // 테두리 색상
-                'line-width': 1,
-                'line-opacity':1             // 테두리 두께
+                'line-color': '#ffffff', // 테두리 색상
+                'line-width': 0.5,       // 테두리 두께
+                'line-opacity': 1,       // 테두리 불투명도
+            },
+        });
+        map6.addSource('F_D_GM_P_C', {
+            type: 'geojson',
+            data: `${baseURL}/Delivery_Desert/Pick_Center.geojson`,
+
+        });
+        map6.addLayer({
+            id: 'F_D_GM_P-Circle',
+            type: 'circle',
+            source: 'F_D_GM_P_C',
+            paint: {
+                'circle-radius': 10,            // 원의 크기
+               'circle-color': [
+            'interpolate', ['linear'], ['distance'],
+            0, 'rgba(255, 255, 255, 0.5)', // 중심: 흰색, 반투명
+            50, 'rgba(255, 255, 255, 0)'   // 경계: 완전히 투명
+        ],
+                'circle-stroke-width': 0.0,       // 테두리 두께 설정
+                'circle-stroke-color': '#ffffff',  // 테두리 색상 설정
+                'circle-opacity': 0.0,
+                'circle-stroke-opacity': 0.5           // 원의 투명도 설정
             }
         });
     });
@@ -861,6 +885,7 @@ map2.on('load', () => {
         const newVisibility = currentVisibility === 'visible' ? 'none' : 'visible';
         map6.setLayoutProperty('F_D_GM_P-Fill', 'visibility', newVisibility);
         map6.setLayoutProperty('F_D_GM_P-Fill-Outline', 'visibility', newVisibility);
+        map6.setLayoutProperty('F_D_GM_P-Circle', 'visibility', newVisibility);
     });
 
 
