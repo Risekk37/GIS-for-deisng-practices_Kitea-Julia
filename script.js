@@ -527,7 +527,7 @@ map2.on('load', () => {
             type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
             source: 'GM',
             paint: {
-                'fill-color': '#EB1700',    // 다각형 영역 색상
+                'fill-color': '#FFAE12',    // 다각형 영역 색상
                 'fill-opacity': 0.4         // 투명도 설정
             },
             layout: {
@@ -545,7 +545,7 @@ map2.on('load', () => {
             type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
             source: 'GM2',
             paint: {
-                'fill-color': '#EB1700',    // 다각형 영역 색상
+                'fill-color': '#FFD788',    // 다각형 영역 색상
                 'fill-opacity': 0.4         // 투명도 설정
             },
             layout: {
@@ -564,8 +564,8 @@ map2.on('load', () => {
             type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
             source: 'GM3',
             paint: {
-                'fill-color': '#EB1700',    // 다각형 영역 색상
-                'fill-opacity': 0.4         // 투명도 설정
+                'fill-color': '#FAF3C2',    // 다각형 영역 색상
+                'fill-opacity': 0.6         // 투명도 설정
             },
             layout: {
                 'visibility': 'visible'  // Set the visibility when adding the layer
@@ -898,6 +898,29 @@ map2.on('load', () => {
         map6.setLayoutProperty('G_P_Cirlce', 'visibility', newVisibility);
     });
 
+    // GM 레이어 토글을 위한 슬라이더 기능 추가
+const gmLayers = [
+    { layer: 'GM-Fill' },
+    { layer: 'GM2-Fill' },
+    { layer: 'GM3-Fill' }
+];
+
+const map5Slider = document.getElementById('map5-slider');
+
+map5Slider.addEventListener('input', () => {
+    const sliderValue = parseInt(map5Slider.value);
+
+    gmLayers.forEach((layerObj, index) => {
+        map5.setLayoutProperty(layerObj.layer, 'visibility', index <= sliderValue ? 'visible' : 'none');
+    });
+});
+
+// 초기 상태 설정
+map5.setLayoutProperty('GM-Fill', 'visibility', 'none');
+map5.setLayoutProperty('GM2-Fill', 'visibility', 'none');
+map5.setLayoutProperty('GM3-Fill', 'visibility', 'visible');
+
+
 let scrollPosition = 0;
 let currentMap = 1;
 const SCROLL_THRESHOLD = 100;
@@ -916,37 +939,37 @@ window.addEventListener('wheel', function(event) {
             currentMap++;
             scrollPosition = 0;
         } else if (scrollPosition <= -SCROLL_THRESHOLD && currentMap > 1) {
-            currentMap--;
-            scrollPosition = 0;
-        }
+        currentMap--;
+        scrollPosition = 0;
+    }
+}
+
+// 각 맵에 대해 활성화/비활성화 처리
+for (let i = 1; i <= 9; i++) {
+    const mapDiv = document.getElementById(`map${i}`);
+    if (mapDiv) {
+        mapDiv.style.opacity = (currentMap === i) ? '1' : '0';
     }
 
-    // 각 맵에 대해 활성화/비활성화 처리
-    for (let i = 1; i <= 9; i++) {
-        const mapDiv = document.getElementById(`map${i}`);
-        if (mapDiv) {
-            mapDiv.style.opacity = (currentMap === i) ? '1' : '0';
-        }
-
-        const textDiv = document.getElementById(`text${i}`);
-        if (textDiv) {
-            textDiv.style.display = (currentMap === i) ? 'block' : 'none';
-        }
-
-        // 각 맵에 해당하는 버튼들 처리
-        const mapControls = document.getElementById(`map${i}-controls`);
-        if (mapControls) {
-            if (currentMap === i) {
-                mapControls.style.display = 'block'; // 현재 활성화된 맵의 버튼만 보이도록
-            } else {
-                mapControls.style.display = 'none'; // 비활성화된 맵의 버튼은 숨김
-            }
-        }
+    const textDiv = document.getElementById(`text${i}`);
+    if (textDiv) {
+        textDiv.style.display = (currentMap === i) ? 'block' : 'none';
     }
 
-    // map1-controls는 항상 숨기기
-    const map1Controls = document.getElementById('map1-controls');
-    if (map1Controls) {
-        map1Controls.style.display = 'none';
+    // 각 맵에 해당하는 버튼 처리
+    const mapControls = document.getElementById(`map${i}-controls`);
+    if (mapControls) {
+        if (currentMap === i) {
+            mapControls.style.display = 'block'; // 현재 활성화된 맵의 컨트롤만 보이도록
+        } else {
+            mapControls.style.display = 'none'; // 비활성화된 맵의 컨트롤은 숨김
+        }
     }
+}
+
+// map1-controls는 항상 숨기기
+const map1Controls = document.getElementById('map1-controls');
+if (map1Controls) {
+    map1Controls.style.display = 'none';
+}
 });
