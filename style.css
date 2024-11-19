@@ -78,3 +78,29 @@ button:hover {
     background-color: #FF9900;
 }
 
+#gm-slider {
+    width: 100%; /* 슬라이더 너비 */
+    margin: 10px 0;
+    appearance: none; /* 기본 브라우저 스타일 제거 */
+    background: #ddd; /* 기본 트랙 색상 */
+    height: 6px;
+    border-radius: 5px;
+    outline: none;
+}
+
+#gm-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #007bff; /* 슬라이더 버튼 색상 */
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#gm-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #007bff;
+    border-radius: 50%;
+    cursor: pointer;
+}
