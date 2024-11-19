@@ -863,24 +863,7 @@ map2.on('load', () => {
         map6.setLayoutProperty('F_D_GM_P-Fill-Outline', 'visibility', newVisibility);
     });
 
-    const toggleGMButton = document.getElementById('toggleGM');
-    toggleGMButton.addEventListener('click', () => {
-        const currentVisibility = map5.getLayoutProperty('GM-Fill', 'visibility') === 'visible' ? 'visible' : 'none';
-        const newVisibility = currentVisibility === 'visible' ? 'none' : 'visible';
-        map5.setLayoutProperty('GM-Fill', 'visibility', newVisibility);
-    });
-    const toggleGM2Button = document.getElementById('toggleGM2');
-    toggleGM2Button.addEventListener('click', () => {
-        const currentVisibility = map5.getLayoutProperty('GM2-Fill', 'visibility') === 'visible' ? 'visible' : 'none';
-        const newVisibility = currentVisibility === 'visible' ? 'none' : 'visible';
-        map5.setLayoutProperty('GM2-Fill', 'visibility', newVisibility);
-    });
-    const toggleGM3Button = document.getElementById('toggleGM3');
-    toggleGM3Button.addEventListener('click', () => {
-        const currentVisibility = map5.getLayoutProperty('GM3-Fill', 'visibility') === 'visible' ? 'visible' : 'none';
-        const newVisibility = currentVisibility === 'visible' ? 'none' : 'visible';
-        map5.setLayoutProperty('GM3-Fill', 'visibility', newVisibility);
-    });
+
 
     const toggleD_GM7Button = document.getElementById('toggleD_GM7');
     toggleD_GM7Button.addEventListener('click', () => {
