@@ -31,11 +31,11 @@
     },
     "thunderforest_outdoors": {
       "type": "vector",
-      "url": "https://tile.thunderforest.com/thunderforest.outdoors-v2.json?apikey=BGvxuSGUKxhnbxMOYbXV"
+      "url": "https://tile.thunderforest.com/thunderforest.outdoors-v2.json?apikey=a485592120ad4480b9d814c75a9f95b1"
     },
     "thunderforest_transport": {
       "type": "vector",
-      "url": "https://tile.thunderforest.com/thunderforest.transport-v2.json?apikey=BGvxuSGUKxhnbxMOYbXV"
+      "url": "https://tile.thunderforest.com/thunderforest.transport-v2.json?apikey=a485592120ad4480b9d814c75a9f95b1"
     },
     "contour-source": {
       "type": "vector",
