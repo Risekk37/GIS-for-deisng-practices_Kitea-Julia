@@ -770,7 +770,7 @@ map2.on('load', () => {
             type: 'line',
             source: 'HIgh_way',
             paint: {
-                'line-color': '#ffffff',      // 테두리 색상
+                'line-color': '#ffff9f',      // 테두리 색상
                 'line-width': 3,             // 테두리 두께
                 'line-opacity': 0.6,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
             },
@@ -783,7 +783,7 @@ map2.on('load', () => {
             type: 'line',
             source: 'HIgh_way2',
             paint: {
-                'line-color': '#ffffff',      // 테두리 색상
+                'line-color': '#ffff9f',      // 테두리 색상
                 'line-width': 3,             // 테두리 두께
                 'line-opacity': 0.6,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
             },
@@ -796,7 +796,7 @@ map2.on('load', () => {
             type: 'line',
             source: 'HIgh_way3',
             paint: {
-                'line-color': '#ffffff',      // 테두리 색상
+                'line-color': '#ffff9f',      // 테두리 색상
                 'line-width': 3,             // 테두리 두께
                 'line-opacity': 0.6,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
             },
