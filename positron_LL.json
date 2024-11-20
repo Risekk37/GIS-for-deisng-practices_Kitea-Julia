@@ -24,7 +24,28 @@
     "openmaptiles": {
       "type": "vector",
       "url": "https://api.maptiler.com/tiles/v3-openmaptiles/tiles.json?key=BGvxuSGUKxhnbxMOYbXV"
-    }
+    },
+    "ibzo3tv": {
+      "type": "vector",
+      "url": "https://localhost:3000/tilejson.json"
+    },
+    "thunderforest_outdoors": {
+      "type": "vector",
+      "url": "https://tile.thunderforest.com/thunderforest.outdoors-v2.json?apikey=a485592120ad4480b9d814c75a9f95b1"
+    },
+    "thunderforest_transport": {
+      "type": "vector",
+      "url": "https://tile.thunderforest.com/thunderforest.transport-v2.json?apikey=a485592120ad4480b9d814c75a9f95b1"
+    },
+    "contour-source": {
+      "type": "vector",
+      "url": "https://localhost:3000/tilejson.json"
+    },
+    "open_zoomstack": {
+      "type": "vector",
+      "url": "https://s3-eu-west-1.amazonaws.com/tiles.os.uk/v2/data/vector/open-zoomstack/config.json"
+    },
+    "11b4nfs": {"type": "vector", "url": "https://localhost:3000/tilejson.json"}
   },
   "sprite": "https://openmaptiles.github.io/positron-gl-style/sprite",
   "glyphs": "https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key=BGvxuSGUKxhnbxMOYbXV",
@@ -42,11 +63,15 @@
       "type": "fill",
       "source": "openmaptiles",
       "source-layer": "park",
-      "minzoom": 0,
+      "minzoom": 4,
       "maxzoom": 0,
       "filter": ["==", "$type", "Polygon"],
-      "layout": {"visibility": "visible"},
-      "paint": {"fill-color": "#CFE2FF", "fill-opacity": ["literal", 0.2]}
+      "layout": {"visibility": "none"},
+      "paint": {
+        "fill-color": "#CFE2FF",
+        "fill-opacity": ["literal", 0.2],
+        "fill-translate-anchor": "map"
+      }
     },
     {
       "id": "water",
@@ -330,6 +355,8 @@
       "metadata": {"mapbox:group": "b6371a3f2f5a9932464fa3867530a2e5"},
       "source": "openmaptiles",
       "source-layer": "transportation",
+      "minzoom": 7,
+      "maxzoom": 15,
       "filter": ["all", ["==", "$type", "LineString"], ["==", "class", "path"]],
       "layout": {
         "line-cap": "round",
@@ -380,7 +407,7 @@
       "layout": {
         "line-cap": "butt",
         "line-join": "miter",
-        "visibility": "visible"
+        "visibility": "none"
       },
       "paint": {
         "line-color": "rgb(213, 213, 213)",
@@ -416,7 +443,8 @@
       "metadata": {"mapbox:group": "b6371a3f2f5a9932464fa3867530a2e5"},
       "source": "openmaptiles",
       "source-layer": "transportation",
-      "maxzoom": 11,
+      "minzoom": 5.5,
+      "maxzoom": 17,
       "filter": [
         "all",
         ["==", "$type", "LineString"],
@@ -425,9 +453,9 @@
       "layout": {
         "line-cap": "round",
         "line-join": "round",
-        "visibility": "none"
+        "visibility": "visible"
       },
-      "paint": {"line-color": "hsla(0, 0%, 85%, 0.69)", "line-width": 2}
+      "paint": {"line-color": "hsla(0, 0%, 85%, 0.69)", "line-width": 1}
     },
     {
       "id": "highway_motorway_casing",
@@ -713,7 +741,7 @@
         "text-pitch-alignment": "viewport",
         "text-rotation-alignment": "viewport",
         "text-size": 10,
-        "visibility": "visible"
+        "visibility": "none"
       },
       "paint": {
         "text-color": "rgb(117, 129, 145)",
@@ -969,7 +997,8 @@
       "metadata": {"mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"},
       "source": "openmaptiles",
       "source-layer": "place",
-      "maxzoom": 12,
+      "minzoom": 8,
+      "maxzoom": 16,
       "filter": [
         "all",
         ["==", "$type", "Point"],
@@ -988,14 +1017,14 @@
         "text-font": ["Metropolis Regular", "Noto Sans Regular"],
         "text-justify": "left",
         "text-offset": [0.5, 0.2],
-        "text-size": 14,
+        "text-size": 33,
         "text-transform": "uppercase",
-        "visibility": "none"
+        "visibility": "visible"
       },
       "paint": {
         "icon-opacity": 0.7,
-        "text-color": "rgb(117, 129, 145)",
-        "text-halo-blur": 1,
+        "text-color": "rgb(242,243,240)",
+        "text-halo-blur": 0.1,
         "text-halo-color": "rgb(242,243,240)",
         "text-halo-width": 1
       }
@@ -1110,6 +1139,29 @@
         },
         "text-halo-color": "rgba(236,236,234,0.7)",
         "text-halo-width": 1.4
+      }
+    },
+    {
+      "id": "contours",
+      "type": "line",
+      "source": "contour-source",
+      "source-layer": "contour",
+      "minzoom": 3,
+      "maxzoom": 24,
+      "paint": {"line-color": "#ff6600", "line-width": 1}
+    },
+    {
+      "id": "hillshade",
+      "type": "line",
+      "source": "thunderforest_outdoors",
+      "source-layer": "hillshade",
+      "minzoom": 3,
+      "maxzoom": 24,
+      "layout": {"visibility": "visible"},
+      "paint": {
+        "line-color": "rgba(158, 161, 183, 1)",
+        "line-width": 1,
+        "line-opacity": 0.1
       }
     }
   ],
