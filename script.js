@@ -70,7 +70,7 @@ const map7 = new maplibregl.Map({
     container: 'map7',
     style: `${baseURL}/positron.json`,
     center: [-95.79896976107271, 29.600411958015386],
-    zoom: 8,
+    zoom: 9,
     scrollZoom: false,
     dragPan: false
 });
@@ -720,6 +720,11 @@ map2.on('load', () => {
             type: 'geojson',
             data: `${baseURL}/Delivery_Desert/Grocery_Pick.geojson`,
         });
+        map7.addSource('Rosemeadow', {
+            type: 'geojson',
+            data: `${baseURL}/Delivery_Desert/Rosemeadow.geojson`,
+        });
+    
     
         // P_R_P Layer - 테두리 선
         map7.addLayer({
@@ -738,17 +743,13 @@ map2.on('load', () => {
     
         // G_P Layer - 원형
         map7.addLayer({
-            id: 'G_P-Circle',
-            type: 'circle',
-            source: 'G_P',
+            id: 'Rose_Border',
+            type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
+            source: 'Rosemeadow',
             paint: {
-                'circle-radius': 3,          // 원의 반지름 크기
-                'circle-color': '#ffffff',   // 원 색상
-                'circle-opacity': 1,         // 원 불투명도
-            },
-            layout: {
-                'visibility': 'visible',    // 초기 상태에서 보이도록 설정
-            },
+                'fill-color': '#ffffff',    // 다각형 영역 색상
+                'fill-opacity': 0.4         // 투명도 설정
+            }
         });
 
         map7.addSource('HIgh_way', {
@@ -771,8 +772,8 @@ map2.on('load', () => {
             source: 'HIgh_way',
             paint: {
                 'line-color': '#ffff9f',      // 테두리 색상
-                'line-width': 3,             // 테두리 두께
-                'line-opacity': 0.6,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
+                'line-width': 2,             // 테두리 두께
+                'line-opacity': 0.4,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
             },
             layout: {
                 'visibility': 'visible',    // 초기 상태에서 보이도록 설정
@@ -784,8 +785,8 @@ map2.on('load', () => {
             source: 'HIgh_way2',
             paint: {
                 'line-color': '#ffff9f',      // 테두리 색상
-                'line-width': 3,             // 테두리 두께
-                'line-opacity': 0.6,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
+                'line-width': 2,             // 테두리 두께
+                'line-opacity': 0.4,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
             },
             layout: {
                 'visibility': 'visible',    // 초기 상태에서 보이도록 설정
@@ -797,8 +798,8 @@ map2.on('load', () => {
             source: 'HIgh_way3',
             paint: {
                 'line-color': '#ffff9f',      // 테두리 색상
-                'line-width': 3,             // 테두리 두께
-                'line-opacity': 0.6,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
+                'line-width': 2,             // 테두리 두께
+                'line-opacity': 0.4,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
             },
             layout: {
                 'visibility': 'visible',    // 초기 상태에서 보이도록 설정
