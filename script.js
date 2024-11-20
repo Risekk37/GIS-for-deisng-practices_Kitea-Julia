@@ -529,9 +529,6 @@ map2.on('load', () => {
             paint: {
                 'fill-color': '#FFAE12',    // 다각형 영역 색상
                 'fill-opacity': 0.4         // 투명도 설정
-            },
-            layout: {
-                'visibility': 'visible'  // Set the visibility when adding the layer
             }
         });
     
@@ -547,9 +544,6 @@ map2.on('load', () => {
             paint: {
                 'fill-color': '#FFD788',    // 다각형 영역 색상
                 'fill-opacity': 0.4         // 투명도 설정
-            },
-            layout: {
-                'visibility': 'visible'  // Set the visibility when adding the layer
             }
         });
     
@@ -566,9 +560,6 @@ map2.on('load', () => {
             paint: {
                 'fill-color': '#FAF3C2',    // 다각형 영역 색상
                 'fill-opacity': 0.6         // 투명도 설정
-            },
-            layout: {
-                'visibility': 'visible'  // Set the visibility when adding the layer
             }
         });
     });
@@ -668,9 +659,8 @@ map2.on('load', () => {
             paint: {
                 'circle-radius': 10,            // 원의 크기
                'circle-color': [
-            'interpolate', ['linear'], ['distance'],
-            0, 'rgba(255, 255, 255, 0.5)', // 중심: 흰색, 반투명
-            50, 'rgba(255, 255, 255, 0)'   // 경계: 완전히 투명
+            'rgba(255, 255, 255, 0.5)' // 중심: 흰색, 반투명
+             // 경계: 완전히 투명
         ],
                 'circle-stroke-width': 0.0,       // 테두리 두께 설정
                 'circle-stroke-color': '#ffffff',  // 테두리 색상 설정
