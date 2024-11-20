@@ -6,7 +6,7 @@ const map1 = new maplibregl.Map({
     container: 'map1',
     style: `${baseURL}/positron.json`,
     center: [-90.3070003, 40.2892984],
-    zoom: 3.8,
+    zoom: 4,
     scrollZoom: false,
     dragPan: false
 });
@@ -57,32 +57,32 @@ const map6 = new maplibregl.Map({
     dragPan: false
 });
 
-const map7 = new maplibregl.Map({
+/*const map7 = new maplibregl.Map({
     container: 'map7',
     style: `${baseURL}/positron.json`,
     center: [-79.32787967776974, 35.59208970407508],
     zoom:10,
     scrollZoom: false,
     dragPan: false
-});
+});*/
 
-const map8 = new maplibregl.Map({
-    container: 'map8',
+const map7 = new maplibregl.Map({
+    container: 'map7',
     style: `${baseURL}/positron.json`,
-    center: [-95.79896976107271, 29.400411958015386],
-    zoom: 10,
+    center: [-95.79896976107271, 29.600411958015386],
+    zoom: 8,
     scrollZoom: false,
     dragPan: false
 });
 
-const map9 = new maplibregl.Map({
+/*const map9 = new maplibregl.Map({
     container: 'map9',
     style: `${baseURL}/positron.json`,
     center: [-80.8254136437971, 27.338284463119106],
     zoom: 10,
     scrollZoom: false,
     dragPan: false
-});
+});*/
 
 map1.on('load', () => {
     map1.addSource('Target', {
@@ -670,7 +670,7 @@ map2.on('load', () => {
         });
     });
     
-    map7.on('load', () => {
+    /*map7.on('load', () => {
         map7.addSource('P_R_P', {
             type: 'geojson',
             data: `${baseURL}/Delivery_Desert/Package_Radius_Pick.geojson`,
@@ -707,48 +707,195 @@ map2.on('load', () => {
                 'visibility': 'visible'  // Explicitly set visibility to visible
             }
         });
-    });
+    });*/
 
-    map8.on('load', () => {
-        map8.addSource('P_R_P', {
+    
+    map7.on('load', () => {
+        // Source 추가
+        map7.addSource('P_R_P', {
             type: 'geojson',
             data: `${baseURL}/Delivery_Desert/Package_Radius_Pick.geojson`,
-
         });
-        map8.addSource('G_P', {
+        map7.addSource('G_P', {
             type: 'geojson',
             data: `${baseURL}/Delivery_Desert/Grocery_Pick.geojson`,
-
         });
-           
-        // 다각형 테두리를 설정하려면 'fill-outline-color' 사용
-        map8.addLayer({
-            id: 'P_R_P-Fill-Outline',
-            type: 'line',   // 테두리 표시를 위해 line 타입 사용
+    
+        // P_R_P Layer - 테두리 선
+        map7.addLayer({
+            id: 'P_R_P-Border',
+            type: 'line',
             source: 'P_R_P',
             paint: {
-                'line-color': '#EB1700',   // 테두리 색상
-                'line-width': 2,
-                'line-opacity':0             // 테두리 두께
-            },layout: {
-                'visibility': 'visible'  // Explicitly set visibility to visible
-            }
+                'line-color': '#EB1700',      // 테두리 색상
+                'line-width': 2,             // 테두리 두께
+                'line-opacity': 1,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
+            },
+            layout: {
+                'visibility': 'visible',    // 초기 상태에서 보이도록 설정
+            },
         });
-        map8.addLayer({
+    
+        // G_P Layer - 원형
+        map7.addLayer({
             id: 'G_P-Circle',
             type: 'circle',
             source: 'G_P',
             paint: {
-                'circle-radius': 1,
-                'circle-color': '#ffffff',
-                'circle-opacity': 1
-            },layout: {
-                'visibility': 'visible'  // Explicitly set visibility to visible
-            }
+                'circle-radius': 3,          // 원의 반지름 크기
+                'circle-color': '#ffffff',   // 원 색상
+                'circle-opacity': 1,         // 원 불투명도
+            },
+            layout: {
+                'visibility': 'visible',    // 초기 상태에서 보이도록 설정
+            },
         });
+
+        map7.addSource('HIgh_way', {
+            type: 'geojson',
+            data: `${baseURL}/Zoom_in/map_00.geojson`,
+        });
+        map7.addSource('HIgh_way2', {
+            type: 'geojson',
+            data: `${baseURL}/Zoom_in/map_11.geojson`,
+        });
+        map7.addSource('HIgh_way3', {
+            type: 'geojson',
+            data: `${baseURL}/Zoom_in/map_22.geojson`,
+        });
+    
+        // P_R_P Layer - 테두리 선
+        map7.addLayer({
+            id: 'H_W',
+            type: 'line',
+            source: 'HIgh_way',
+            paint: {
+                'line-color': '#EB1700',      // 테두리 색상
+                'line-width': 2,             // 테두리 두께
+                'line-opacity': 1,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
+            },
+            layout: {
+                'visibility': 'visible',    // 초기 상태에서 보이도록 설정
+            },
+        });
+    
+    map7.addSource('Target', {
+        type: 'geojson',
+        data: `${baseURL}/Grocery/Target_Location.geojson`
     });
     
-    map9.on('load', () => {
+    map7.addLayer({
+        id: 'Target-Circle-Fill',
+        type: 'circle',
+        source: 'Target',
+        paint: {
+            'circle-radius': 1,              // 원의 크기
+            'circle-color': '#00C792',       // 원의 내부 색상
+            'circle-opacity': 1            // 원의 투명도
+        }
+    });
+    
+    // 테두리 선만 추가
+    map7.addLayer({
+        id: 'Target-Circle-Stroke',
+        type: 'circle',
+        source: 'Target',
+        paint: {
+            'circle-radius': 20,            // 원의 크기
+            'circle-color': 'rgba(0, 0, 0, 0)',  // 원의 내부 색상을 투명하게 설정
+            'circle-stroke-width': 0.5,       // 테두리 두께 설정
+            'circle-stroke-color': '#00C792',  // 테두리 색상 설정
+            'circle-opacity': 0.2,
+            'circle-stroke-opacity': 0.5            // 원의 투명도 설정
+        }
+    });
+    map7.addSource('Trader', {
+        type: 'geojson',
+        data: `${baseURL}/Grocery/Trader_Joe_Location.geojson`
+    });
+
+    map7.addLayer({
+        id: 'Trader-Circle',
+        type: 'circle',
+        source: 'Trader',
+        paint: {
+            'circle-radius': 1,
+            'circle-color': '#37EBA4',
+            'circle-opacity': 1
+        }
+    });
+    map7.addLayer({
+        id: 'Trader-Circle-Stroke',
+        type: 'circle',
+        source: 'Trader',
+        paint: {
+            'circle-radius': 20,            // 원의 크기
+            'circle-color': 'rgba(0, 0, 0, 0)',  // 원의 내부 색상을 투명하게 설정
+            'circle-stroke-width': 0.5,       // 테두리 두께 설정
+            'circle-stroke-color': '#37EBA4',  // 테두리 색상 설정
+            'circle-opacity': 0.2,
+            'circle-stroke-opacity': 0.5            // 원의 투명도 설정
+        }
+    });
+    map7.addSource('Walmart', {
+        type: 'geojson',
+        data: `${baseURL}/Grocery/Walmart_Location.geojson`
+    });
+
+    map7.addLayer({
+        id: 'Walmart-Circle',
+        type: 'circle',
+        source: 'Walmart',
+        paint: {
+            'circle-radius': 1,
+            'circle-color': '#6CEA99',
+            'circle-opacity': 1
+        }
+    });
+    map7.addLayer({
+        id: 'Walmart-Circle-Stroke',
+        type: 'circle',
+        source: 'Walmart',
+        paint: {
+            'circle-radius': 20,            // 원의 크기
+            'circle-color': 'rgba(0, 0, 0, 0)',  // 원의 내부 색상을 투명하게 설정
+            'circle-stroke-width': 0.5,       // 테두리 두께 설정
+            'circle-stroke-color': '#6CEA99',  // 테두리 색상 설정
+            'circle-opacity': 0.2,
+            'circle-stroke-opacity': 0.5           // 원의 투명도 설정
+        }
+    });
+
+    map7.addSource('Whole', {
+        type: 'geojson',
+        data: `${baseURL}/Grocery/Whole_Food_Location.geojson`
+    });
+
+    map7.addLayer({
+        id: 'Whole-Circle',
+        type: 'circle',
+        source: 'Whole',
+        paint: {
+            'circle-radius': 1,
+            'circle-color': '#A5EAAF',
+            'circle-opacity': 1
+        }
+    });
+    map7.addLayer({
+        id: 'Whole-Circle-Stroke',
+        type: 'circle',
+        source: 'Whole',
+        paint: {
+            'circle-radius': 20,                // 원의 크기
+            'circle-color': 'rgba(0, 0, 0, 0)',   // 원의 내부 색상을 투명하게 설정
+            'circle-stroke-width': 0.5,             // 테두리 두께 설정
+            'circle-stroke-color': '#A5EAAF',     // 테두리 색상 설정
+            'circle-opacity': 0.2,                // 원의 투명도 설정
+            'circle-stroke-opacity': 0.5          // 원의 투명도 설정
+        }
+    });
+});
+    /*map9.on('load', () => {
         map9.addSource('P_R_P', {
             type: 'geojson',
             data: `${baseURL}/Delivery_Desert/Package_Radius_Pick.geojson`,
@@ -785,7 +932,7 @@ map2.on('load', () => {
                 'visibility': 'visible'  // Explicitly set visibility to visible
             }
         });
-    });
+    });*/
 
     const toggleAmazonButton = document.getElementById('toggleAmazon');
     toggleAmazonButton.addEventListener('click', () => {
@@ -886,8 +1033,6 @@ map2.on('load', () => {
         map6.setLayoutProperty('P_R_P-Fill-Outline', 'visibility', newVisibility);
     });
 
-
-
     const toggleF_D_GM_P7Button = document.getElementById('toggleF_D_GM_P7');
     toggleF_D_GM_P7Button.addEventListener('click', () => {
         const currentVisibility = map6.getLayoutProperty('G_P_Cirlce', 'visibility') === 'visible' ? 'visible' : 'none';
@@ -931,8 +1076,8 @@ window.addEventListener('wheel', function(event) {
 
     scrollPosition += event.deltaY;
 
-    if (currentMap >= 1 && currentMap <= 9) {
-        if (scrollPosition >= SCROLL_THRESHOLD && currentMap < 10) {
+    if (currentMap >= 1 && currentMap <= 7) {
+        if (scrollPosition >= SCROLL_THRESHOLD && currentMap < 9) {
             currentMap++;
             scrollPosition = 0;
         } else if (scrollPosition <= -SCROLL_THRESHOLD && currentMap > 1) {
@@ -942,7 +1087,7 @@ window.addEventListener('wheel', function(event) {
     }
 
     // 각 맵에 대해 활성화/비활성화 처리
-    for (let i = 1; i <= 9; i++) {
+    for (let i = 1; i <= 7; i++) {
         const mapDiv = document.getElementById(`map${i}`);
         if (mapDiv) {
             mapDiv.style.opacity = (currentMap === i) ? '1' : '0';
