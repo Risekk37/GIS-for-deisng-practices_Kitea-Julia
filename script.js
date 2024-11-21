@@ -77,14 +77,14 @@ const map7 = new maplibregl.Map({
     dragPan: false
 });
 
-/*const map9 = new maplibregl.Map({
-    container: 'map9',
+const map8 = new maplibregl.Map({
+    container: 'map8',
     style: `${baseURL}/positron.json`,
-    center: [-80.8254136437971, 27.338284463119106],
-    zoom: 10,
+    center: [-95.800056, 29.404016],
+    zoom: 15,
     scrollZoom: false,
     dragPan: false
-});*/
+});
 
 map1.on('load', () => {
     map1.addSource('Target', {
@@ -718,29 +718,26 @@ map2.on('load', () => {
             type: 'geojson',
             data: `${baseURL}/Delivery_Desert/Rosemeadow.geojson`,
         });
-        map7.addSource('Cir1', {
-            type: 'geojson',
-            data: `${baseURL}/Zoom_in/UPS_Cir1.geojson`,
-        });
-        map7.addSource('Cir2', {
-            type: 'geojson',
-            data: `${baseURL}/Zoom_in/UPS_Cir2.geojson`,
-        });
         map7.addSource('UPS_D', {
             type: 'geojson',
-            data: `${baseURL}/Zoom_in/UPS_Dots.geojson`,
+            data: `${baseURL}/Zoom_in/UPS_Dost.geojson`,
         });
-        map7.addSource('UPS_L1', {
+        map7.addSource('UPS_R', {
             type: 'geojson',
-            data: `${baseURL}/Zoom_in/UPS_Line_M.geojson`,
+            data: `${baseURL}/Zoom_in/UPS_Round.geojson`,
         });
-        map7.addSource('UPS_L2', {
+        map7.addSource('UPS_L', {
             type: 'geojson',
-            data: `${baseURL}/Zoom_in/UPS_Line_T.geojson`,
+            data: `${baseURL}/Zoom_in/UPS_Line.geojson`,
         });
+        map7.addSource('UPS_PD', {
+            type: 'geojson',
+            data: `${baseURL}/Zoom_in/UPS_Pick_Dot.geojson`,
+        });
+       
     
         map7.addLayer({
-            id: 'Rose_Border',
+            id: 'Rose',
             type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
             source: 'Rosemeadow',
             paint: {
@@ -748,7 +745,60 @@ map2.on('load', () => {
                 'fill-opacity': 0.4         // 투명도 설정
             }
         });
-
+        
+        map7.addLayer({
+            id: 'Rose_Border',
+            type: 'line',  // MultiPolygon을 표시할 때 fill 타입 사용
+            source: 'Rosemeadow',
+            paint: {
+                'line-color': '#f7941d',      // 테두리 색상
+                'line-width': 8,             // 테두리 두께
+                'line-opacity': 0.9,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
+            }
+        });
+        map7.addLayer({
+            id: 'Rose_Round',
+            type: 'line',  // MultiPolygon을 표시할 때 fill 타입 사용
+            source: 'UPS_R',
+            paint: {
+                'line-color': '#f7941d',      // 테두리 색상
+                'line-width': 8,             // 테두리 두께
+                'line-opacity': 0.9,
+                'line-dasharray': [4, 2]           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
+            }
+        });
+        map7.addLayer({
+            id: 'UPS_L_Line',
+            type: 'line',  // MultiPolygon을 표시할 때 fill 타입 사용
+            source: 'Rosemeadow',
+            paint: {
+                'line-color': '#ffffff',      // 테두리 색상
+                'line-width': 2,             // 테두리 두께
+                'line-opacity': 0.9,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
+            }
+        });
+        map7.addLayer({
+            id: 'UPS',
+            type: 'circle',
+            source: 'UPS_D',
+            paint: {
+                'circle-radius': 2,
+                'circle-color': '#FFffff',
+                'circle-opacity': 1
+            }
+        });
+        map7.addLayer({
+            id: 'UPS',
+            type: 'circle',
+            source: 'UPS_pD',
+            paint: {
+                'circle-radius': 3,               // 원 크기
+                'circle-color': 'rgba(0, 0, 0, 0)', // 내부를 완전히 투명하게 설정
+                'circle-stroke-color': '#FFD800',  // 외곽선 색상
+                'circle-stroke-width': 1,          // 외곽선 두께
+                'circle-stroke-opacity': 1  
+            }
+        });
         // P_R_P Layer - 테두리 선
         /*map7.addLayer({
             id: 'Cir1-Border',
@@ -776,16 +826,7 @@ map2.on('load', () => {
                 'visibility': 'visible',    // 초기 상태에서 보이도록 설정
             },
         });*/
-        map7.addLayer({
-            id: 'UPS',
-            type: 'circle',
-            source: 'UPS_D',
-            paint: {
-                'circle-radius': 10,
-                'circle-color': '#FFD800',
-                'circle-opacity': 1
-            }
-        });
+        
         /*map7.addLayer({
             id: 'UPS_M',
             type: 'line',
@@ -831,9 +872,9 @@ map2.on('load', () => {
             type: 'line',
             source: 'HIgh_way',
             paint: {
-                'line-color': '#ffff9f',      // 테두리 색상
+                'line-color': '#f7941d',      // 테두리 색상
                 'line-width': 4,             // 테두리 두께
-                'line-opacity': 0.4,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
+                'line-opacity': 0.7,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
             },
             layout: {
                 'visibility': 'visible',    // 초기 상태에서 보이도록 설정
@@ -844,9 +885,9 @@ map2.on('load', () => {
             type: 'line',
             source: 'HIgh_way2',
             paint: {
-                'line-color': '#ffff9f',      // 테두리 색상
+                'line-color': '#f7941d',      // 테두리 색상
                 'line-width': 4,             // 테두리 두께
-                'line-opacity': 0.4,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
+                'line-opacity': 0.7,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
             },
             layout: {
                 'visibility': 'visible',    // 초기 상태에서 보이도록 설정
@@ -857,9 +898,9 @@ map2.on('load', () => {
             type: 'line',
             source: 'HIgh_way3',
             paint: {
-                'line-color': '#ffff9f',      // 테두리 색상
+                'line-color': '#f7941d',      // 테두리 색상
                 'line-width': 4,             // 테두리 두께
-                'line-opacity': 0.4,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
+                'line-opacity': 0.7,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
             },
             layout: {
                 'visibility': 'visible',    // 초기 상태에서 보이도록 설정
@@ -1049,8 +1090,8 @@ window.addEventListener('wheel', function(event) {
 
     scrollPosition += event.deltaY;
 
-    if (currentMap >= 1 && currentMap <= 7) {
-        if (scrollPosition >= SCROLL_THRESHOLD && currentMap < 9) {
+    if (currentMap >= 1 && currentMap <= 8) {
+        if (scrollPosition >= SCROLL_THRESHOLD && currentMap < 10) {
             currentMap++;
             scrollPosition = 0;
         } else if (scrollPosition <= -SCROLL_THRESHOLD && currentMap > 1) {
@@ -1060,7 +1101,7 @@ window.addEventListener('wheel', function(event) {
     }
 
     // 각 맵에 대해 활성화/비활성화 처리
-    for (let i = 1; i <= 7; i++) {
+    for (let i = 1; i <= 8; i++) {
         const mapDiv = document.getElementById(`map${i}`);
         if (mapDiv) {
             mapDiv.style.opacity = (currentMap === i) ? '1' : '0';

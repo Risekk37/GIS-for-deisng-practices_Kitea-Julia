@@ -1129,12 +1129,12 @@
       "type": "line",
       "source": "thunderforest_outdoors",
       "source-layer": "hillshade",
-      "minzoom": 3,
+      "minzoom": 1,
       "maxzoom": 24,
       "layout": {"visibility": "visible"},
       "paint": {
         "line-color": "rgba(158, 161, 183, 1)",
-        "line-width": 1,
+        "line-width": 0.5,
         "line-opacity": 0.1
       }
     }

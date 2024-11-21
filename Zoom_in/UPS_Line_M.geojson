@@ -1,8 +1,0 @@
-{
-"type": "FeatureCollection",
-"name": "UPS_Line_M",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-"features": [
-{ "type": "Feature", "properties": { "id": 2, "d": null }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ -96.152666918333068, 29.572814817891437 ], [ -95.582119579217689, 29.295975326390234 ] ] ] } }
-]
-}
