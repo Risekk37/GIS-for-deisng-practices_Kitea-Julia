@@ -68,7 +68,7 @@ const map6 = new maplibregl.Map({
 
 const map7 = new maplibregl.Map({
     container: 'map7',
-    style: `${baseURL}/positron.json`,
+    style: `${baseURL}/positron_LL.json`,
     center: [-95.79896976107271, 29.600411958015386],
     zoom: 9,
     scrollZoom: false,
