@@ -2,6 +2,8 @@ const baseURL = window.location.hostname === "localhost"
     ? "" 
     : "https://risekk37.github.io/GIS-for-deisng-practices_Kitea-Julia";
 
+
+const styleURL = `${baseURL}/positron.json`;
 const map1 = new maplibregl.Map({
     container: 'map1',
     style: `${baseURL}/positron.json`,
@@ -68,7 +70,7 @@ const map6 = new maplibregl.Map({
 
 const map7 = new maplibregl.Map({
     container: 'map7',
-    style: `${baseURL}/positron_LL.json`,
+    style: `${baseURL}/positron.json`,
     center: [-95.79896976107271, 29.600411958015386],
     zoom: 9,
     scrollZoom: false,
