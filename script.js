@@ -750,7 +750,7 @@ map2.on('load', () => {
         });
 
         // P_R_P Layer - 테두리 선
-        map7.addLayer({
+        /*map7.addLayer({
             id: 'Cir1-Border',
             type: 'line',
             source: 'Cir1',
@@ -775,18 +775,18 @@ map2.on('load', () => {
             layout: {
                 'visibility': 'visible',    // 초기 상태에서 보이도록 설정
             },
-        });
+        });*/
         map7.addLayer({
             id: 'UPS',
             type: 'circle',
             source: 'UPS_D',
             paint: {
-                'circle-radius': 1,
+                'circle-radius': 10,
                 'circle-color': '#FFD800',
                 'circle-opacity': 1
             }
         });
-        map7.addLayer({
+        /*map7.addLayer({
             id: 'UPS_M',
             type: 'line',
             source: 'UPS_L1',
@@ -810,7 +810,7 @@ map2.on('load', () => {
             layout: {
                 'visibility': 'visible',    // 초기 상태에서 보이도록 설정
             },
-        });
+        });*/
 
         map7.addSource('HIgh_way', {
             type: 'geojson',
