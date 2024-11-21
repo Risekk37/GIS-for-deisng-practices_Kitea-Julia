@@ -71,7 +71,7 @@ const map6 = new maplibregl.Map({
 const map7 = new maplibregl.Map({
     container: 'map7',
     style: `${baseURL}/positron.json`,
-    center: [-95.79896976107271, 29.600411958015386],
+    center: [-95.49896976107271, 29.600411958015386],
     zoom: 9,
     scrollZoom: false,
     dragPan: false
@@ -741,8 +741,8 @@ map2.on('load', () => {
             type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
             source: 'Rosemeadow',
             paint: {
-                'fill-color': '#ffffff',    // 다각형 영역 색상
-                'fill-opacity': 0.4         // 투명도 설정
+                'fill-color': '#f7941d',    // 다각형 영역 색상
+                'fill-opacity': 0.33         // 투명도 설정
             }
         });
         
@@ -752,7 +752,7 @@ map2.on('load', () => {
             source: 'Rosemeadow',
             paint: {
                 'line-color': '#f7941d',      // 테두리 색상
-                'line-width': 8,             // 테두리 두께
+                'line-width': 5,             // 테두리 두께
                 'line-opacity': 0.9,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
             }
         });
@@ -762,7 +762,7 @@ map2.on('load', () => {
             source: 'UPS_R',
             paint: {
                 'line-color': '#f7941d',      // 테두리 색상
-                'line-width': 8,             // 테두리 두께
+                'line-width': 2.5,             // 테두리 두께
                 'line-opacity': 0.9,
                 'line-dasharray': [4, 2]           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
             }
@@ -770,7 +770,7 @@ map2.on('load', () => {
         map7.addLayer({
             id: 'UPS_L_Line',
             type: 'line',  // MultiPolygon을 표시할 때 fill 타입 사용
-            source: 'Rosemeadow',
+            source: 'UPS_L',
             paint: {
                 'line-color': '#ffffff',      // 테두리 색상
                 'line-width': 2,             // 테두리 두께
@@ -782,19 +782,19 @@ map2.on('load', () => {
             type: 'circle',
             source: 'UPS_D',
             paint: {
-                'circle-radius': 2,
+                'circle-radius': 3,
                 'circle-color': '#FFffff',
                 'circle-opacity': 1
             }
         });
         map7.addLayer({
-            id: 'UPS',
+            id: 'UPS_pd',
             type: 'circle',
-            source: 'UPS_pD',
+            source: 'UPS_D',
             paint: {
-                'circle-radius': 3,               // 원 크기
+                'circle-radius': 6,               // 원 크기
                 'circle-color': 'rgba(0, 0, 0, 0)', // 내부를 완전히 투명하게 설정
-                'circle-stroke-color': '#FFD800',  // 외곽선 색상
+                'circle-stroke-color': '#FFffff',  // 외곽선 색상
                 'circle-stroke-width': 1,          // 외곽선 두께
                 'circle-stroke-opacity': 1  
             }
@@ -873,7 +873,7 @@ map2.on('load', () => {
             source: 'HIgh_way',
             paint: {
                 'line-color': '#f7941d',      // 테두리 색상
-                'line-width': 4,             // 테두리 두께
+                'line-width': 3,             // 테두리 두께
                 'line-opacity': 0.7,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
             },
             layout: {
@@ -886,7 +886,7 @@ map2.on('load', () => {
             source: 'HIgh_way2',
             paint: {
                 'line-color': '#f7941d',      // 테두리 색상
-                'line-width': 4,             // 테두리 두께
+                'line-width': 3,             // 테두리 두께
                 'line-opacity': 0.7,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
             },
             layout: {
@@ -899,7 +899,7 @@ map2.on('load', () => {
             source: 'HIgh_way3',
             paint: {
                 'line-color': '#f7941d',      // 테두리 색상
-                'line-width': 4,             // 테두리 두께
+                'line-width': 3,             // 테두리 두께
                 'line-opacity': 0.7,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
             },
             layout: {
