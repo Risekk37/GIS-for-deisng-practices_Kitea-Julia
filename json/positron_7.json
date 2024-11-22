@@ -37,7 +37,7 @@
       "id": "background",
       "type": "background",
       "minzoom": 0,
-      "maxzoom": 24,
+      "maxzoom": 0,
       "layout": {"visibility": "visible"},
       "paint": {"background-color": "#1D3459"}
     },
@@ -426,8 +426,8 @@
       "metadata": {"mapbox:group": "b6371a3f2f5a9932464fa3867530a2e5"},
       "source": "openmaptiles",
       "source-layer": "transportation",
-      "minzoom": 3,
-      "maxzoom": 24,
+      "minzoom": 5.5,
+      "maxzoom": 17,
       "filter": [
         "all",
         ["==", "$type", "LineString"],
@@ -438,11 +438,7 @@
         "line-join": "round",
         "visibility": "visible"
       },
-      "paint": {
-        "line-color": "hsla(0, 0%, 85%, 0.69)",
-        "line-width": 0.5,
-        "line-opacity": 0.5
-      }
+      "paint": {"line-color": "hsla(0, 0%, 85%, 0.69)", "line-width": 1}
     },
     {
       "id": "highway_motorway_casing",
@@ -1004,18 +1000,16 @@
         "text-font": ["Metropolis Regular", "Noto Sans Regular"],
         "text-justify": "left",
         "text-offset": [0.5, 0.2],
-        "text-size": 22,
+        "text-size": 33,
         "text-transform": "uppercase",
-        "visibility": "visible",
-        "text-line-height": 1
+        "visibility": "visible"
       },
       "paint": {
-        "icon-opacity": 0.2,
+        "icon-opacity": 0.7,
         "text-color": "rgb(242,243,240)",
         "text-halo-blur": 0.1,
         "text-halo-color": "rgb(242,243,240)",
-        "text-halo-width": 1,
-        "text-opacity": 0.7
+        "text-halo-width": 1
       }
     },
     {
@@ -1135,12 +1129,12 @@
       "type": "line",
       "source": "thunderforest_outdoors",
       "source-layer": "hillshade",
-      "minzoom": 3,
+      "minzoom": 1,
       "maxzoom": 24,
       "layout": {"visibility": "visible"},
       "paint": {
         "line-color": "rgba(158, 161, 183, 1)",
-        "line-width": 1,
+        "line-width": 0.5,
         "line-opacity": 0.1
       }
     }

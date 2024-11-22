@@ -17,7 +17,11 @@
     <div id="map5" class="map"></div>
     <div id="map6" class="map"></div>
     <div id="map7" class="map"></div>
-    <div id="map8" class="map"></div>
+    <div id="map8" class="map">
+        <div id="map8Left" class="map-half"></div>
+        <div id="map8Right" class="map-half"></div>
+        <input id="map8-slider" type="range" min="0" max="100" value="50" />
+    </div>
     <div id="map9" class="map"></div>
 </div>
 
@@ -31,59 +35,54 @@
 </div>
 <div id="text2" class="text">
     <h2>Package Delivery</h2>
-    <p>There are many package delivery service providers across the 
-        United States, such as UPS, USPS, FedEx, and Amazon, 
-        and they are widely distributed. While delivery service providers 
-        like UPS are spread across most regions, 
-        Amazon is mostly located in large cities and along highways.</p>
+    <p>There are numerous package delivery service providers across the United States, 
+        including UPS, USPS, FedEx, and Amazon, all with widespread distribution. 
+        While companies like UPS operate in most regions, Amazon's delivery services 
+        are primarily concentrated in large cities and along major highways.</p>
 </div>
 <div id="text3" class="text">
     <h2>Grocery Delivery</h2>
-    <p>Across the United States, there are various grocery brands, 
-        each offering delivery services within a radius of up to 15 miles. 
-        Target has 1,780 locations, Trader Joe's has 521, Walmart has 5,234, 
-        and Whole Foods has 517 locations. Walmart has the highest number 
-        of stores and the widest coverage area.
+    <p>Across the United States, numerous grocery brands offer delivery services within 
+        a radius of up to 15 miles. Walmart leads with 5,234 locations and the broadest 
+        coverage, followed by Target with 1,780 locations, Trader Joe's with 521, and 
+        Whole Foods with 517.
     </p>
 </div>
 <div id="text4" class="text">
     <h2>Meal Delivery</h2>
-    <p>Meal delivery services are also growing continuously, with most 
-        deliveries made by bicycle or car. These services tend to operate 
-        only in cities, depending on the location of the delivery person 
-        and the restaurant. DoorDash serves the smallest areas, 
-        while UberEats operates in the largest regions.</p>
+    <p>Meal delivery services are experiencing continuous growth, with most deliveries 
+        made by bicycle or car. These services primarily operate in urban areas, 
+        depending on the proximity of delivery personnel and restaurants. DoorDash 
+        covers smaller service areas, while UberEats operates across the largest 
+        regions.</p>
 </div>
 <div id="text5" class="text">
-    <h2>Meal Delivery</h2>
-    <p>Meal delivery services are also growing continuously, with most 
-        deliveries made by bicycle or car. These services tend to operate 
-        only in cities, depending on the location of the delivery person 
-        and the restaurant. DoorDash serves the smallest areas, 
-        while UberEats operates in the largest regions.</p>
+    <h2>Delivery Service Gaps and Population Density</h2>
+    <p>Most regions in the U.S. that lack delivery services are located in 
+        geographically challenging areas, such as deserts or mountains. However, 
+        even within certain distances from city centers, there are areas that can 
+        be defined as "delivery deserts," where no delivery services are available.</p>
 </div>
 <div id="text6" class="text">
     <h2>Delivery Desert</h2>
     <p>Approximately 4 million households in the U.S. live in food deserts, 
-        where access to groceries is limited. Due to the lack of nearby 
-        grocery stores, they may rely on delivery services as an alternative 
-        to obtain food. However, many areas in the U.S. still lack grocery 
-        and meal delivery services, some of which are also classified 
-        as food deserts.</p>
+        where access to grocery stores is limited. In these areas, residents 
+        may rely on delivery services as an alternative to obtain food. However, 
+        many regions in the U.S. still lack both grocery and meal delivery options, 
+        eaving some food deserts without adequate access to fresh food.</p>
 </div>
 <div id="text7" class="text">
-    <h2>Rosemeadow, Texas</h2>
-    <p></p>
+    <h2>CaseStudy Area 1</h2>
+    <p>This map highlights a delivery desert located approximately 40 miles from Houston. 
+        The nearest UPS hub is also around 40 miles away, emphasizing the limited delivery 
+        service in this area.</p>
 </div>
-<!-- <div id="text8" class="text">
-    <h2>Goldston, North Carolina</h2>
-    <p></p>
+<div id="text8" class="text">
+    <h2>Close-Up:CaseStudy Area 1</h2>
+    <p>Upon closer observation, there are pockets of residential areas within this region. 
+    However, due to the sporadic development, establishing efficient delivery services remains 
+    a challenge.</p>
 </div>
-<div id="text9" class="text">
-    <h2>Okeechobee, Florida</h2>
-    <p></p>
-</div> -->
-<!-- ... -->
 <!-- 각 맵에 맞는 버튼들을 추가 -->
 <div id="map1-controls" class="map-controls">
     <button>Map 1 Button</button>
@@ -115,10 +114,7 @@
     <button id="toggleF_D_GM">Food_Desert&Delivery_Desert_Pop5000</button>
     <button id="toggleF_D_GM_P">Pick_3</button>
 </div> 
-<div id="map7-controls" class="map-controls">
-    <button id="toggleD_GM7">Desert&Delivery_Desert_Pop5000</button>
-    <button id="toggleF_D_GM_P7">Pick_3</button>
-</div> 
+
 <!--<div id="map8-controls" class="map-controls">
 
 </div> 

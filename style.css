@@ -104,3 +104,30 @@ button:hover {
     border-radius: 50%;
     cursor: pointer;
 }
+
+.map-half {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+}
+
+#map8Left {
+    left: 0;
+}
+
+#map8Right {
+    right: 0;
+}
+
+#map8-slider {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transform: translateY(-50%);
+    width: 100%;
+    z-index: 10;
+    pointer-events: all; /* 슬라이더와 지도가 독립적으로 동작 */
+}

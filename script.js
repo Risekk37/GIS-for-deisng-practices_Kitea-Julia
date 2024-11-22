@@ -77,13 +77,24 @@ const map7 = new maplibregl.Map({
     dragPan: false
 });
 
-const map8 = new maplibregl.Map({
-    container: 'map8',
+const map8Left = new maplibregl.Map({
+    container: 'map8Left',
     style: `${baseURL}/positron.json`,
-    center: [-95.800056, 29.404016],
-    zoom: 15,
+    center: [-95.80155173605988, 29.403778064902202],
+    zoom: 14.5,
     scrollZoom: false,
-    dragPan: false
+    dragPan: false,
+    interactive: false, // 사용자 인터랙션 비활성화
+});
+
+const map8Right = new maplibregl.Map({
+    container: 'map8Right',
+    style: 'https://api.maptiler.com/maps/hybrid/style.json?key=BGvxuSGUKxhnbxMOYbXV',
+    center: [-95.80155173605988, 29.403778064902202],
+    zoom: 14.5,
+    scrollZoom: false,
+    dragPan: false,
+    interactive: false, // 사용자 인터랙션 비활성화
 });
 
 map1.on('load', () => {
@@ -1040,20 +1051,6 @@ map2.on('load', () => {
     });
 
 
-    const toggleD_GM7Button = document.getElementById('toggleD_GM7');
-    toggleD_GM7Button.addEventListener('click', () => {
-        const currentVisibility = map6.getLayoutProperty('P_R_P-Fill-Outline', 'visibility') === 'visible' ? 'visible' : 'none';
-        const newVisibility = currentVisibility === 'visible' ? 'none' : 'visible';
-        map6.setLayoutProperty('P_R_P-Fill-Outline', 'visibility', newVisibility);
-    });
-
-    const toggleF_D_GM_P7Button = document.getElementById('toggleF_D_GM_P7');
-    toggleF_D_GM_P7Button.addEventListener('click', () => {
-        const currentVisibility = map6.getLayoutProperty('G_P_Cirlce', 'visibility') === 'visible' ? 'visible' : 'none';
-        const newVisibility = currentVisibility === 'visible' ? 'none' : 'visible';
-        map6.setLayoutProperty('G_P_Cirlce', 'visibility', newVisibility);
-    });
-
     const gmSlider = document.getElementById('gm-slider');
     // 슬라이더 초기값을 3으로 설정
 gmSlider.value = 3;
@@ -1077,6 +1074,65 @@ gmSlider.addEventListener('input', () => {
     }
 });
 
+
+// 초기 scrollPosition 값 설정 (50%로 설정하여 맵이 반반 보이도록)
+let scrollPosition2 = 50; // 여기에서 한 번만 정의
+
+// 슬라이더 동작 처리
+const slider = document.getElementById('map8-slider');
+slider.addEventListener('input', () => {
+    const sliderValue = slider.value;
+
+    // 슬라이더 값에 따라 왼쪽과 오른쪽 맵의 가시 영역 조정
+    document.getElementById('map8Left').style.height = `${sliderValue}%`;
+    document.getElementById('map8Right').style.height = `${100 - sliderValue}%`;
+});
+
+// 스크롤 이벤트 처리 (세로축 기준으로 보이는 영역을 변경)
+window.addEventListener('wheel', function (event) {
+    event.preventDefault(); // 기본 스크롤 방지
+
+    const scrollThreshold = 100; // 스크롤 감도
+    let delta = event.deltaY;
+
+    // 위로 스크롤
+    if (delta < -scrollThreshold) {
+        scrollPosition2 = Math.min(scrollPosition2 + 1, 100); // 위로 스크롤
+    }
+
+    // 아래로 스크롤
+    if (delta > scrollThreshold) {
+        scrollPosition2 = Math.max(scrollPosition2 - 1, 0); // 아래로 스크롤
+    }
+
+    // 스크롤에 따라 맵의 보이는 영역을 조정
+    updateMaps(scrollPosition2);
+});
+
+// 스크롤에 따라 두 맵의 보이는 영역을 업데이트
+function updateMaps(position) {
+    document.getElementById('map8Left').style.height = `${position}%`;   // 왼쪽 맵 가시 영역
+    document.getElementById('map8Right').style.height = `${100 - position}%`;  // 오른쪽 맵 가시 영역
+}
+// 스크롤에 따라 두 맵의 보이는 영역을 업데이트
+function updateMaps(position) {
+    // 왼쪽 맵과 오른쪽 맵의 비율을 스크롤 값에 맞게 업데이트
+    document.getElementById('map8Left').style.width = `${position}%`;   // 왼쪽 맵 가시 영역
+    document.getElementById('map8Right').style.width = `${100 - position}%`;  // 오른쪽 맵 가시 영역
+}
+
+// 스크롤에 따라 두 맵의 보이는 영역을 업데이트
+function updateMaps(position) {
+    document.getElementById('map8Left').style.height = `${position}%`;   // 왼쪽 맵 가시 영역
+    document.getElementById('map8Right').style.height = `${100 - position}%`;  // 오른쪽 맵 가시 영역
+}
+
+// 스크롤에 따라 두 맵의 보이는 영역을 업데이트
+function updateMaps(position) {
+    document.getElementById('map8Left').style.height = `${position}%`;   // 왼쪽 맵 가시 영역
+    document.getElementById('map8Right').style.height = `${100 - position}%`;  // 오른쪽 맵 가시 영역
+}
+
 let scrollPosition = 0;
 let currentMap = 1;
 const SCROLL_THRESHOLD = 100;
@@ -1098,6 +1154,7 @@ window.addEventListener('wheel', function(event) {
             currentMap--;
             scrollPosition = 0;
         }
+    
     }
 
     // 각 맵에 대해 활성화/비활성화 처리
