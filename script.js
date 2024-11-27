@@ -1,6 +1,6 @@
 const baseURL = window.location.hostname === "localhost"
     ? "" 
-    : "https://risekk37.github.io/GIS-for-deisng-practices_Kitea-Julia";
+    : "https://risekk37.github.io/GIS-for-design-practices_Kitae-Julia";
 
 
 const styleURL = `${baseURL}/positron.json`;
@@ -18,7 +18,7 @@ const map2 = new maplibregl.Map({
     container: 'map2',
     style: `${baseURL}/positron.json`,
     center: [-90.3070003, 40.2892984],
-    zoom: 3.8,
+    zoom: 4,
     scrollZoom: false,
     dragPan: false
 });
@@ -27,7 +27,7 @@ const map3 = new maplibregl.Map({
     container: 'map3',
     style: `${baseURL}/positron.json`,
     center: [-90.3070003, 40.2892984],
-    zoom: 3.8,
+    zoom: 4,
     scrollZoom: false,
     dragPan: false
 });
@@ -36,7 +36,7 @@ const map4 = new maplibregl.Map({
     container: 'map4',
     style: `${baseURL}/positron.json`,
     center: [-90.3070003, 40.2892984],
-    zoom: 3.8,
+    zoom: 4,
     scrollZoom: false,
     dragPan: false
 });
@@ -45,7 +45,7 @@ const map5 = new maplibregl.Map({
     container: 'map5',
     style: `${baseURL}/positron.json`,
     center: [-90.3070003, 40.2892984],
-    zoom: 3.8,
+    zoom: 4,
     scrollZoom: false,
     dragPan: false
 });
@@ -54,7 +54,7 @@ const map6 = new maplibregl.Map({
     container: 'map6',
     style: `${baseURL}/positron.json`,
     center: [-90.3070003, 40.2892984],
-    zoom: 3.8,
+    zoom: 4,
     scrollZoom: false,
     dragPan: false
 });
@@ -539,6 +539,9 @@ map2.on('load', () => {
             id: 'GM-Fill',
             type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
             source: 'GM',
+            layout: {
+                'visibility': 'none' // 초기 상태를 none으로 설정
+            },
             paint: {
                 'fill-color': '#FFAE12',    // 다각형 영역 색상
                 'fill-opacity': 0.4         // 투명도 설정
@@ -554,6 +557,9 @@ map2.on('load', () => {
             id: 'GM2-Fill',
             type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
             source: 'GM2',
+            layout: {
+                'visibility': 'none' // 초기 상태를 none으로 설정
+            },
             paint: {
                 'fill-color': '#FFD788',    // 다각형 영역 색상
                 'fill-opacity': 0.4         // 투명도 설정
@@ -613,15 +619,7 @@ map2.on('load', () => {
             data: `${baseURL}/Delivery_Desert/Food_Desert_Grocery,Meal_Sub_Pop_5000Up.geojson`,
 
         });
-        map6.addLayer({
-            id: 'F_D_GM-Fill',
-            type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
-            source: 'F_D_GM',
-            paint: {
-                'fill-color': '#ff8000',    // 다각형 영역 색상
-                'fill-opacity': 0.4         // 투명도 설정
-            }
-        });
+        
     
         // 다각형 테두리를 설정하려면 'fill-outline-color' 사용
         map6.addLayer({
@@ -634,6 +632,17 @@ map2.on('load', () => {
                 'line-opacity':0             // 테두리 두께
             }
         });
+
+        map6.addLayer({
+            id: 'F_D_GM-Fill',
+            type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
+            source: 'F_D_GM',
+            paint: {
+                'fill-color': '#ff8000',    // 다각형 영역 색상
+                'fill-opacity': 0.4         // 투명도 설정
+            }
+        });
+        
         map6.addSource('F_D_GM_P', {
             type: 'geojson',
             data: `${baseURL}/Delivery_Desert/Pick_Food_Desert_Grocery,Meal_Sub_Pop_5000Up.geojson`,
@@ -656,7 +665,7 @@ map2.on('load', () => {
             source: 'F_D_GM_P',
             paint: {
                 'line-color': '#ffffff', // 테두리 색상
-                'line-width': 0.5,       // 테두리 두께
+                'line-width': 10,       // 테두리 두께
                 'line-opacity': 1,       // 테두리 불투명도
             },
         });
@@ -1075,63 +1084,34 @@ gmSlider.addEventListener('input', () => {
 });
 
 
-// 초기 scrollPosition 값 설정 (50%로 설정하여 맵이 반반 보이도록)
-let scrollPosition2 = 50; // 여기에서 한 번만 정의
+// 동기화 기능 추가
+function syncMaps(mapA, mapB) {
+    mapA.on('move', () => {
+        const center = mapA.getCenter();
+        const zoom = mapA.getZoom();
+        mapB.setCenter(center);
+        mapB.setZoom(zoom);
+    });
+}
 
-// 슬라이더 동작 처리
+// 슬라이더 기능 추가
 const slider = document.getElementById('map8-slider');
 slider.addEventListener('input', () => {
-    const sliderValue = slider.value;
+    const sliderValue = slider.value; // 슬라이더의 값 (0~100)
 
-    // 슬라이더 값에 따라 왼쪽과 오른쪽 맵의 가시 영역 조정
-    document.getElementById('map8Left').style.height = `${sliderValue}%`;
-    document.getElementById('map8Right').style.height = `${100 - sliderValue}%`;
+    // 왼쪽 맵의 width를 슬라이더 값에 맞게 조정
+    document.getElementById('map8Left').style.width = `${sliderValue}%`;
+
+    // 오른쪽 맵의 width를 슬라이더 값에 맞게 조정 (100% - 슬라이더 값)
+    document.getElementById('map8Right').style.width = `${100 - sliderValue}%`;
+
+    // 오른쪽 맵의 가시 영역을 슬라이더 값에 맞게 조정
+    document.getElementById('map8Right').style.clipPath = `polygon(${sliderValue}% 0%, 100% 0%, 100% 100%, ${sliderValue}% 100%)`;
 });
 
-// 스크롤 이벤트 처리 (세로축 기준으로 보이는 영역을 변경)
-window.addEventListener('wheel', function (event) {
-    event.preventDefault(); // 기본 스크롤 방지
-
-    const scrollThreshold = 100; // 스크롤 감도
-    let delta = event.deltaY;
-
-    // 위로 스크롤
-    if (delta < -scrollThreshold) {
-        scrollPosition2 = Math.min(scrollPosition2 + 1, 100); // 위로 스크롤
-    }
-
-    // 아래로 스크롤
-    if (delta > scrollThreshold) {
-        scrollPosition2 = Math.max(scrollPosition2 - 1, 0); // 아래로 스크롤
-    }
-
-    // 스크롤에 따라 맵의 보이는 영역을 조정
-    updateMaps(scrollPosition2);
-});
-
-// 스크롤에 따라 두 맵의 보이는 영역을 업데이트
-function updateMaps(position) {
-    document.getElementById('map8Left').style.height = `${position}%`;   // 왼쪽 맵 가시 영역
-    document.getElementById('map8Right').style.height = `${100 - position}%`;  // 오른쪽 맵 가시 영역
-}
-// 스크롤에 따라 두 맵의 보이는 영역을 업데이트
-function updateMaps(position) {
-    // 왼쪽 맵과 오른쪽 맵의 비율을 스크롤 값에 맞게 업데이트
-    document.getElementById('map8Left').style.width = `${position}%`;   // 왼쪽 맵 가시 영역
-    document.getElementById('map8Right').style.width = `${100 - position}%`;  // 오른쪽 맵 가시 영역
-}
-
-// 스크롤에 따라 두 맵의 보이는 영역을 업데이트
-function updateMaps(position) {
-    document.getElementById('map8Left').style.height = `${position}%`;   // 왼쪽 맵 가시 영역
-    document.getElementById('map8Right').style.height = `${100 - position}%`;  // 오른쪽 맵 가시 영역
-}
-
-// 스크롤에 따라 두 맵의 보이는 영역을 업데이트
-function updateMaps(position) {
-    document.getElementById('map8Left').style.height = `${position}%`;   // 왼쪽 맵 가시 영역
-    document.getElementById('map8Right').style.height = `${100 - position}%`;  // 오른쪽 맵 가시 영역
-}
+// 맵 동기화
+syncMaps(map8Left, map8Right);
+syncMaps(map8Right, map8Left);
 
 let scrollPosition = 0;
 let currentMap = 1;
