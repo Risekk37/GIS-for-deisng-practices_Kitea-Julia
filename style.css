@@ -78,36 +78,57 @@ button:hover {
     background-color: #FF9900;
 }
 
-.map-container {
+/* 전체 컨테이너 스타일 */
+#map8 {
     position: relative;
     width: 100%;
-    height: 500px; /* 맵의 높이 설정 */
+    height: 100vh; /* 화면 전체 높이 */
+    overflow: hidden;
 }
 
+/* 맵 반쪽 스타일 */
 .map-half {
     position: absolute;
-    height: 100%;
     top: 0;
+    height: 100%;
 }
 
+/* 왼쪽 맵 스타일 */
 #map8Left {
     left: 0;
-    width: 50%;
+    width: 100%; /* 기본적으로 화면의 절반 */
 }
 
+/* 오른쪽 맵 스타일 */
 #map8Right {
     right: 0;
-    width: 50%;
-    clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%); /* 초기 클립 설정 */
+    width: 100%; /* 화면의 절반 */
+    clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
 }
 
 #map8-slider {
     position: absolute;
-    top: 50%;
+    top: 50%; /* 화면의 중간 */
     left: 0;
-    right: 0;
-    margin: auto;
-    transform: translateY(-50%);
-    width: 100%;
-    z-index: 10;
+    width: 100%; /* 화면 전체 너비 */
+    z-index: 10; /* 맵보다 위에 배치 */
+    transform: translateY(-50%); /* 슬라이더를 수직 가운데 정렬 */
+    pointer-events: auto; /* 사용자 상호작용 활성화 */
+    -webkit-appearance: none; /* Safari */
+    appearance: none; /* 기본 스타일 제거 */
+    background: transparent; /* 슬라이더 트랙 배경 제거 */
 }
+
+/* 슬라이더의 핸들 (중앙의 점) */
+#map8-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* 기본 핸들 스타일 제거 */
+    appearance: none; /* 기본 핸들 스타일 제거 */
+    width: 30px; /* 핸들의 너비 */
+    height: 5px; /* 핸들의 높이 */
+    background-color: #ffffff; /* 핸들의 색상 (흰색) */
+    border: circle;
+    border-radius: 1; /* 사각형 모양 */
+    cursor: ew-resize; /* 좌우 이동 시 커서 변경 */
+    position: relative;
+}
+

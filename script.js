@@ -79,7 +79,7 @@ const map7 = new maplibregl.Map({
 
 const map8Left = new maplibregl.Map({
     container: 'map8Left',
-    style: `${baseURL}/positron.json`,
+    style: `${baseURL}/positron_Small.json`,
     center: [-95.80155173605988, 29.403778064902202],
     zoom: 14.5,
     scrollZoom: false,
@@ -600,6 +600,9 @@ map2.on('load', () => {
             paint: {
                 'fill-color': '#EB1700',    // 다각형 영역 색상
                 'fill-opacity': 0.4         // 투명도 설정
+            }, 
+            layout: {
+                'visibility': 'none'   // 선 끝부분을 둥글게 처리
             }
         });
     
@@ -612,6 +615,9 @@ map2.on('load', () => {
                 'line-color': '#EB1700',   // 테두리 색상
                 'line-width': 2,
                 'line-opacity':0             // 테두리 두께
+            },
+            layout: {
+                'visibility': 'none'   // 선 끝부분을 둥글게 처리
             }
         });
         map6.addSource('F_D_GM', {
@@ -638,25 +644,17 @@ map2.on('load', () => {
             type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
             source: 'F_D_GM',
             paint: {
-                'fill-color': '#ff8000',    // 다각형 영역 색상
+                'fill-color': '#EB1700',    // 다각형 영역 색상
                 'fill-opacity': 0.4         // 투명도 설정
             }
         });
-        
+
         map6.addSource('F_D_GM_P', {
             type: 'geojson',
             data: `${baseURL}/Delivery_Desert/Pick_Food_Desert_Grocery,Meal_Sub_Pop_5000Up.geojson`,
 
         });
-        map6.addLayer({
-            id: 'F_D_GM_P-Fill',
-            type: 'fill',
-            source: 'F_D_GM_P',
-            paint: {
-                'fill-color': '#EB1700', // 다각형 영역 색상
-                'fill-opacity': 0.7,    // 투명도 설정
-            },
-        });
+        
         
         // 다각형 테두리 추가
         map6.addLayer({
@@ -665,31 +663,52 @@ map2.on('load', () => {
             source: 'F_D_GM_P',
             paint: {
                 'line-color': '#ffffff', // 테두리 색상
-                'line-width': 10,       // 테두리 두께
-                'line-opacity': 1,       // 테두리 불투명도
+                'line-width': 8,        // 테두리 두께
+                'line-opacity': 0.6,    // 테두리 불투명도
             },
+            layout: {
+                'line-join': 'round',  // 선 연결부를 둥글게 처리
+                'line-cap': 'round',
+                'visibility': 'none'   // 선 끝부분을 둥글게 처리
+            }
         });
+
+        map6.addLayer({
+            id: 'F_D_GM_P-Fill-Outline2',
+            type: 'line',
+            source: 'F_D_GM_P2',
+            paint: {
+                'line-color': '#ffffff', // 테두리 색상
+                'line-width': 100,        // 테두리 두께
+                'line-opacity': 0.3,    // 테두리 불투명도
+                'line-blur': 100 // 경계 확장
+            },
+            layout: {
+                'line-join': 'round',  // 선 연결부를 둥글게 처리
+                'line-cap': 'round',
+                'visibility': 'none'   // 선 끝부분을 둥글게 처리
+            }
+        });
+
+        map6.addLayer({
+            id: 'F_D_GM_P-Fill',
+            type: 'fill',
+            source: 'F_D_GM_P',
+            paint: {
+                'fill-color': '#EB1700', // 다각형 영역 색상
+                'fill-opacity': 0.7,    // 투명도 설정
+            },
+            layout: {
+                'visibility': 'none'   // 선 끝부분을 둥글게 처리
+            }
+        });
+
         map6.addSource('F_D_GM_P_C', {
             type: 'geojson',
             data: `${baseURL}/Delivery_Desert/Pick_Center.geojson`,
 
         });
-        map6.addLayer({
-            id: 'F_D_GM_P-Circle',
-            type: 'circle',
-            source: 'F_D_GM_P_C',
-            paint: {
-                'circle-radius': 10,            // 원의 크기
-               'circle-color': [
-            'rgba(255, 255, 255, 0.5)' // 중심: 흰색, 반투명
-             // 경계: 완전히 투명
-        ],
-                'circle-stroke-width': 0.0,       // 테두리 두께 설정
-                'circle-stroke-color': '#ffffff',  // 테두리 색상 설정
-                'circle-opacity': 0.0,
-                'circle-stroke-opacity': 0.5           // 원의 투명도 설정
-            }
-        });
+       
     });
     
     /*map7.on('load', () => {
@@ -1051,13 +1070,34 @@ map2.on('load', () => {
     });
 
     const toggleF_D_GM_PButton = document.getElementById('toggleF_D_GM_P');
-    toggleF_D_GM_PButton.addEventListener('click', () => {
-        const currentVisibility = map6.getLayoutProperty('F_D_GM_P-Fill', 'visibility') === 'visible' ? 'visible' : 'none';
-        const newVisibility = currentVisibility === 'visible' ? 'none' : 'visible';
-        map6.setLayoutProperty('F_D_GM_P-Fill', 'visibility', newVisibility);
-        map6.setLayoutProperty('F_D_GM_P-Fill-Outline', 'visibility', newVisibility);
-        map6.setLayoutProperty('F_D_GM_P-Circle', 'visibility', newVisibility);
-    });
+
+toggleF_D_GM_PButton.addEventListener('click', () => {
+    const currentVisibility = map6.getLayoutProperty('F_D_GM_P-Fill', 'visibility') === 'visible' ? 'visible' : 'none';
+
+    if (currentVisibility === 'none') {
+        // 켜짐/꺼짐 반복 후 최종적으로 켜지는 동작
+        let toggleCount = 0;
+        const interval = setInterval(() => {
+            const visibility = toggleCount % 2 === 0 ? 'visible' : 'none';
+            map6.setLayoutProperty('F_D_GM_P-Fill', 'visibility', visibility);
+            map6.setLayoutProperty('F_D_GM_P-Fill-Outline', 'visibility', visibility);
+            map6.setLayoutProperty('F_D_GM_P-Fill-Outline2', 'visibility', visibility);
+            toggleCount++;
+
+            if (toggleCount === 5) { // 반복을 3번(켜짐, 꺼짐, 켜짐, 꺼짐, 최종 켜짐) 하고 종료
+                clearInterval(interval);
+                map6.setLayoutProperty('F_D_GM_P-Fill', 'visibility', 'visible');
+                map6.setLayoutProperty('F_D_GM_P-Fill-Outline', 'visibility', 'visible');
+                map6.setLayoutProperty('F_D_GM_P-Fill-Outline2', 'visibility', 'visible');
+            }
+        }, 150); // 각 상태 변화 간격 (300ms)
+    } else {
+        // 그냥 꺼지는 동작
+        map6.setLayoutProperty('F_D_GM_P-Fill', 'visibility', 'none');
+        map6.setLayoutProperty('F_D_GM_P-Fill-Outline', 'visibility', 'none');
+        map6.setLayoutProperty('F_D_GM_P-Fill-Outline2', 'visibility', 'none');
+    }
+});
 
 
     const gmSlider = document.getElementById('gm-slider');
@@ -1085,33 +1125,16 @@ gmSlider.addEventListener('input', () => {
 
 
 // 동기화 기능 추가
-function syncMaps(mapA, mapB) {
-    mapA.on('move', () => {
-        const center = mapA.getCenter();
-        const zoom = mapA.getZoom();
-        mapB.setCenter(center);
-        mapB.setZoom(zoom);
-    });
-}
-
-// 슬라이더 기능 추가
 const slider = document.getElementById('map8-slider');
 slider.addEventListener('input', () => {
     const sliderValue = slider.value; // 슬라이더의 값 (0~100)
 
-    // 왼쪽 맵의 width를 슬라이더 값에 맞게 조정
-    document.getElementById('map8Left').style.width = `${sliderValue}%`;
+    // 왼쪽 맵의 width를 슬라이더 값에 맞게 조정 (기존 코드에서 변경 없음)
+    document.getElementById('map8Left').style.clipPath = `polygon(0% 0%, ${sliderValue}% 0%, ${sliderValue}% 100%, 0% 100%)`;
 
-    // 오른쪽 맵의 width를 슬라이더 값에 맞게 조정 (100% - 슬라이더 값)
-    document.getElementById('map8Right').style.width = `${100 - sliderValue}%`;
-
-    // 오른쪽 맵의 가시 영역을 슬라이더 값에 맞게 조정
+    // 오른쪽 맵의 width를 슬라이더 값에 맞게 조정 (기존 코드에서 변경 없음)
     document.getElementById('map8Right').style.clipPath = `polygon(${sliderValue}% 0%, 100% 0%, 100% 100%, ${sliderValue}% 100%)`;
 });
-
-// 맵 동기화
-syncMaps(map8Left, map8Right);
-syncMaps(map8Right, map8Left);
 
 let scrollPosition = 0;
 let currentMap = 1;
