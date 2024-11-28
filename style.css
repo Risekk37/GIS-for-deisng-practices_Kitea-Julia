@@ -24,7 +24,7 @@ body {
 .text {
     position: absolute;
     top: 60vh;
-    right: 3%;
+    right: 1%;
     background-color: rgba(0, 0, 0, 0);
     color: white;
     padding: 10px;

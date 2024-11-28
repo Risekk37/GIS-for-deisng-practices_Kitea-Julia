@@ -97,6 +97,34 @@ const map8Right = new maplibregl.Map({
     interactive: false, // 사용자 인터랙션 비활성화
 });
 
+
+// 모든 맵을 배열로 관리
+const maps = [map1, map2,map3, map4, map5, map6];
+
+// 공통 bounds 설정
+const bounds = [
+    [-123.6069919549103, 25.7269043062651 ], // 남서쪽 경도, 위도, 
+    [-65.88793919356102, 51.33690746226263]   // 북동쪽 경도, 위도, 
+];
+
+// 모든 맵에 fitBounds 적용
+maps.forEach((map) => {
+    map.fitBounds(bounds, {
+        padding: 20,
+        animate: false
+    });
+});
+
+// 화면 크기 변경 시 모든 맵에 대해 fitBounds 재적용
+window.addEventListener('resize', () => {
+    maps.forEach((map) => {
+        map.fitBounds(bounds, {
+            padding: 20,
+            animate: false
+        });
+    });
+});
+
 map1.on('load', () => {
     map1.addSource('Target', {
         type: 'geojson',
@@ -543,8 +571,8 @@ map2.on('load', () => {
                 'visibility': 'none' // 초기 상태를 none으로 설정
             },
             paint: {
-                'fill-color': '#FFAE12',    // 다각형 영역 색상
-                'fill-opacity': 0.4         // 투명도 설정
+                'fill-color': '#ffffff',    // 다각형 영역 색상
+                'fill-opacity': 0.8        // 투명도 설정
             }
         });
     
@@ -561,8 +589,8 @@ map2.on('load', () => {
                 'visibility': 'none' // 초기 상태를 none으로 설정
             },
             paint: {
-                'fill-color': '#FFD788',    // 다각형 영역 색상
-                'fill-opacity': 0.4         // 투명도 설정
+                'fill-color': '#f7cd9b',    // 다각형 영역 색상
+                'fill-opacity': 0.8         // 투명도 설정
             }
         });
     
@@ -577,8 +605,8 @@ map2.on('load', () => {
             type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
             source: 'GM3',
             paint: {
-                'fill-color': '#FAF3C2',    // 다각형 영역 색상
-                'fill-opacity': 0.6         // 투명도 설정
+                'fill-color': '#f7941d',    // 다각형 영역 색상
+                'fill-opacity': 0.8         // 투명도 설정
             }
         });
     });
@@ -633,9 +661,9 @@ map2.on('load', () => {
             type: 'line',   // 테두리 표시를 위해 line 타입 사용
             source: 'F_D_GM',
             paint: {
-                'line-color': '#ff8000',   // 테두리 색상
-                'line-width': 2,
-                'line-opacity':0             // 테두리 두께
+                'line-color': '#f7941d',   // 테두리 색상
+                'line-width': 1,
+                'line-opacity':1             // 테두리 두께
             }
         });
 
@@ -644,8 +672,8 @@ map2.on('load', () => {
             type: 'fill',  // MultiPolygon을 표시할 때 fill 타입 사용
             source: 'F_D_GM',
             paint: {
-                'fill-color': '#EB1700',    // 다각형 영역 색상
-                'fill-opacity': 0.4         // 투명도 설정
+                'fill-color': '#f7941d',    // 다각형 영역 색상
+                'fill-opacity': 0.33         // 투명도 설정
             }
         });
 
@@ -937,7 +965,7 @@ map2.on('load', () => {
             type: 'line',
             source: 'HIgh_way3',
             paint: {
-                'line-color': '#f7941d',      // 테두리 색상
+                'line-color': 'C',      // 테두리 색상
                 'line-width': 3,             // 테두리 두께
                 'line-opacity': 0.7,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
             },
