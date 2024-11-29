@@ -63,12 +63,122 @@ body {
     display: none; /* 기본적으로 숨기기 */
 }
 
+#gm-slider {
+    -webkit-appearance: none; /* 기본 브라우저 스타일 제거 */
+    position: absolute;
+    appearance: none;
+    top: 30px;
+    right: 30px;
+    width: 200%; /* 슬라이더의 너비를 컨테이너에 맞춤 */
+    height: 15px; /* 슬라이더 바 높이 */
+    background: linear-gradient(to right, #fffff0, #f7941d); /* 그라데이션 슬라이더 바 */
+    border-radius: 5px; /* 둥근 모서리 */
+    outline: none;
+    transition: background 0.3s ease-in-out; /* 부드러운 전환 효과 */
+    cursor: pointer;
+}
+
+
+#gm-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px; /* 손잡이 크기 */
+    height: 20px;
+    background: #fffff0; /* 손잡이 색상 */
+    border-radius: 50%; /* 둥근 손잡이 */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* 손잡이 그림자 */
+    transition: background 0.3s ease-in-out; /* 부드러운 전환 효과 */
+}
+
+#gm-slider::-webkit-slider-thumb:hover {
+    background: #FF5722; /* 손잡이 호버 색상 */
+}
+
+#gm-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #FF5722;
+    border-radius: 50%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+#gm-slider::-moz-range-thumb:hover {
+    background: #FF7043;
+}
+
+#gm-slider::-ms-thumb {
+    width: 20px;
+    height: 20px;
+    background: #FF5722;
+    border-radius: 50%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+#gm-slider::-ms-thumb:hover {
+    background: #FF7043;
+}
+/* 흰색 박스 스타일링 */
+#slider-background {
+    position: absolute;
+    top: 10px; /* 컨트롤의 상단에 배치 */
+    Right: 20px; /* 컨트롤의 왼쪽에 배치 */
+    width: 220%; /* 컨트롤 너비를 꽉 채움 */
+    height: 280%; /* 컨트롤 높이를 꽉 채움 */
+    background: rgba(255, 255, 255, 0.8); /* 반투명 흰색 배경 */
+    border-radius: 10px; /* 둥근 모서리 */
+    z-index: -1; /* 배경을 뒤로 보냄 */
+}
+/* 레이블 스타일 */
+#gm-slider-label {
+    position: relative;
+    top: 10px; /* 박스 상단에서의 거리 */
+    right: 30px; /* 박스 오른쪽에서의 거리 */
+    font-size: 16px; /* 글자 크기 */
+    font-weight: bold; /* 글자 두께 */
+    color: #333333; /* 글자 색상 */
+    font-family: Arial, sans-serif; /* 글꼴 */
+    z-index: 1; /* 배경 박스 위로 */
+    background: none; /* 투명 배경 */
+}
+
+.slider-label-left {
+    position: absolute;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333333;
+    font-family: Arial, sans-serif;
+    top: 50px; /* y축 위치 */
+    right: 300px;
+}
+.slider-label-middle {
+    position: absolute;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333333;
+    font-family: Arial, sans-serif;
+    top: 50px; /* y축 위치 */
+    right: 175px;
+}
+
+.slider-label-right {
+    position: absolute;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333333;
+    font-family: Arial, sans-serif;
+    top: 50px; /* y축 위치 */
+    right: 30px;
+}
 button {
     margin: 10px;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #ffffff;
+    background-color: #fffff0;
     border: none;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -78,6 +188,13 @@ button:hover {
     background-color: #FF9900;
 }
 
+mi {
+    position: absolute;
+    color: #fffff0;
+    bottom: 22.5vh;
+    right: 55.5vw;
+    font-weight: bold;
+}
 /* 전체 컨테이너 스타일 */
 #map8 {
     position: relative;
@@ -125,7 +242,7 @@ button:hover {
     appearance: none; /* 기본 핸들 스타일 제거 */
     width: 30px; /* 핸들의 너비 */
     height: 5px; /* 핸들의 높이 */
-    background-color: #ffffff; /* 핸들의 색상 (흰색) */
+    background-color: #fffff0; /* 핸들의 색상 (흰색) */
     border: circle;
     border-radius: 1; /* 사각형 모양 */
     cursor: ew-resize; /* 좌우 이동 시 커서 변경 */

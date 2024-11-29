@@ -190,7 +190,7 @@ map1.on('load', () => {
         source: 'Target',
         paint: {
             'circle-radius': 1,              // 원의 크기
-            'circle-color': '#ffffff',       // 원의 내부 색상
+            'circle-color': '#fffff0',       // 원의 내부 색상
             'circle-opacity': 1            // 원의 투명도
         }
     });
@@ -204,7 +204,7 @@ map1.on('load', () => {
             'circle-radius': 2.5,            // 원의 크기
             'circle-color': 'rgba(0, 0, 0, 0)',  // 원의 내부 색상을 투명하게 설정
             'circle-stroke-width': 0.5,       // 테두리 두께 설정
-            'circle-stroke-color': '#ffffff',  // 테두리 색상 설정
+            'circle-stroke-color': '#fffff0',  // 테두리 색상 설정
             'circle-opacity': 0.0,
             'circle-stroke-opacity': 0.5            // 원의 투명도 설정
         }
@@ -220,7 +220,7 @@ map1.on('load', () => {
         source: 'Trader',
         paint: {
             'circle-radius': 1,
-            'circle-color': '#ffffff',
+            'circle-color': '#fffff0',
             'circle-opacity': 1
         }
     });
@@ -232,7 +232,7 @@ map1.on('load', () => {
             'circle-radius': 2.5,            // 원의 크기
             'circle-color': 'rgba(0, 0, 0, 0)',  // 원의 내부 색상을 투명하게 설정
             'circle-stroke-width': 0.5,       // 테두리 두께 설정
-            'circle-stroke-color': '#ffffff',  // 테두리 색상 설정
+            'circle-stroke-color': '#fffff0',  // 테두리 색상 설정
             'circle-opacity': 0.0,
             'circle-stroke-opacity': 0.5            // 원의 투명도 설정
         }
@@ -248,7 +248,7 @@ map1.on('load', () => {
         source: 'Walmart',
         paint: {
             'circle-radius': 1,
-            'circle-color': '#ffffff',
+            'circle-color': '#fffff0',
             'circle-opacity': 1
         }
     });
@@ -260,7 +260,7 @@ map1.on('load', () => {
             'circle-radius': 2.5,            // 원의 크기
             'circle-color': 'rgba(0, 0, 0, 0)',  // 원의 내부 색상을 투명하게 설정
             'circle-stroke-width': 0.5,       // 테두리 두께 설정
-            'circle-stroke-color': '#ffffff',  // 테두리 색상 설정
+            'circle-stroke-color': '#fffff0',  // 테두리 색상 설정
             'circle-opacity': 0.0,
             'circle-stroke-opacity': 0.5           // 원의 투명도 설정
         }
@@ -277,7 +277,7 @@ map1.on('load', () => {
         source: 'Whole',
         paint: {
             'circle-radius': 1,
-            'circle-color': '#ffffff',
+            'circle-color': '#fffff0',
             'circle-opacity': 1
         }
     });
@@ -289,7 +289,7 @@ map1.on('load', () => {
             'circle-radius': 2.5,                // 원의 크기
             'circle-color': 'rgba(0, 0, 0, 0)',   // 원의 내부 색상을 투명하게 설정
             'circle-stroke-width': 0.5,             // 테두리 두께 설정
-            'circle-stroke-color': '#ffffff',     // 테두리 색상 설정
+            'circle-stroke-color': '#fffff0',     // 테두리 색상 설정
             'circle-opacity': 0.0,                // 원의 투명도 설정
             'circle-stroke-opacity': 0.5          // 원의 투명도 설정
         }
@@ -553,8 +553,8 @@ map2.on('load', () => {
                 'visibility': 'none' // 초기 상태를 none으로 설정
             },
             paint: {
-                'fill-color': '#ffffff',    // 다각형 영역 색상
-                'fill-opacity': 0.8        // 투명도 설정
+                'fill-color': '#fffff0',    // 다각형 영역 색상
+                'fill-opacity': 0.6        // 투명도 설정
             }
         });
     
@@ -572,7 +572,7 @@ map2.on('load', () => {
             },
             paint: {
                 'fill-color': '#f7cd9b',    // 다각형 영역 색상
-                'fill-opacity': 0.8         // 투명도 설정
+                'fill-opacity': 0.6        // 투명도 설정
             }
         });
     
@@ -588,7 +588,7 @@ map2.on('load', () => {
             source: 'GM3',
             paint: {
                 'fill-color': '#f7941d',    // 다각형 영역 색상
-                'fill-opacity': 0.8         // 투명도 설정
+                'fill-opacity': 0.6         // 투명도 설정
             }
         });
     });
@@ -671,7 +671,7 @@ map2.on('load', () => {
             type: 'line',
             source: 'F_D_GM_P',
             paint: {
-                'line-color': '#ffffff', // 테두리 색상
+                'line-color': '#fffff0', // 테두리 색상
                 'line-width': 8,        // 테두리 두께
                 'line-opacity': 0.6,    // 테두리 불투명도
             },
@@ -685,9 +685,9 @@ map2.on('load', () => {
         map6.addLayer({
             id: 'F_D_GM_P-Fill-Outline2',
             type: 'line',
-            source: 'F_D_GM_P2',
+            source: 'F_D_GM_P',
             paint: {
-                'line-color': '#ffffff', // 테두리 색상
+                'line-color': '#fffff0', // 테두리 색상
                 'line-width': 100,        // 테두리 두께
                 'line-opacity': 0.3,    // 테두리 불투명도
                 'line-blur': 100 // 경계 확장
@@ -751,7 +751,7 @@ map2.on('load', () => {
             source: 'G_P',
             paint: {
                 'circle-radius': 1,
-                'circle-color': '#ffffff',
+                'circle-color': '#fffff0',
                 'circle-opacity': 1
             },layout: {
                 'visibility': 'visible'  // Explicitly set visibility to visible
@@ -820,18 +820,62 @@ map2.on('load', () => {
             type: 'line',  // MultiPolygon을 표시할 때 fill 타입 사용
             source: 'UPS_L',
             paint: {
-                'line-color': '#ffffff',      // 테두리 색상
+                'line-color': '#fffff0',      // 테두리 색상
                 'line-width': 2,             // 테두리 두께
                 'line-opacity': 0.9,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
             }
         });
+
+        map7.on('load', function () {
+            // 미리 계산된 중간점 좌표
+            const midpoint = [-95.7075526584383, 29.458221026692497];
+        
+            // 텍스트 소스 추가
+            map7.addSource('textLabel', {
+                type: 'geojson',
+                data: {
+                    "type": "FeatureCollection",
+                    "features": [
+                        {
+                            "type": "Feature",
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": midpoint // 미리 계산된 좌표
+                            },
+                            "properties": {
+                                "label": "40mi" // 텍스트
+                            }
+                        }
+                    ]
+                }
+            });
+        
+            // 텍스트 레이어 추가
+            map7.addLayer({
+                id: 'lineText',
+                type: 'symbol',
+                source: 'textLabel',
+                layout: {
+                    'text-field': ['get', 'label'], // 텍스트 필드
+                    'text-font': ['Arial Unicode MS Bold'], // 폰트 설정
+                    'text-size': 18, // 글자 크기
+                    'text-anchor': 'center', // 중앙 정렬
+                    'text-offset': [0, 1.5], // 텍스트 위치 조정
+                },
+                paint: {
+                    'text-color': '#fffff0', // 텍스트 색상 (흰색)
+                    'text-halo-color': '#000000', // 텍스트 테두리 색상 (검정색)
+                    'text-halo-width': 2 // 텍스트 테두리 두께
+                }
+            }); });
+
         map7.addLayer({
             id: 'UPS',
             type: 'circle',
             source: 'UPS_D',
             paint: {
                 'circle-radius': 3,
-                'circle-color': '#FFffff',
+                'circle-color': '#fffff0',
                 'circle-opacity': 1
             }
         });
@@ -842,7 +886,7 @@ map2.on('load', () => {
             paint: {
                 'circle-radius': 6,               // 원 크기
                 'circle-color': 'rgba(0, 0, 0, 0)', // 내부를 완전히 투명하게 설정
-                'circle-stroke-color': '#FFffff',  // 외곽선 색상
+                'circle-stroke-color': '#fffff0',  // 외곽선 색상
                 'circle-stroke-width': 1,          // 외곽선 두께
                 'circle-stroke-opacity': 1  
             }
@@ -946,7 +990,7 @@ map2.on('load', () => {
             type: 'line',
             source: 'HIgh_way3',
             paint: {
-                'line-color': 'C',      // 테두리 색상
+                'line-color': '#f7941d',      // 테두리 색상
                 'line-width': 3,             // 테두리 두께
                 'line-opacity': 0.7,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
             },
@@ -988,7 +1032,7 @@ map2.on('load', () => {
             source: 'G_P',
             paint: {
                 'circle-radius': 1,
-                'circle-color': '#ffffff',
+                'circle-color': '#fffff0',
                 'circle-opacity': 1
             },layout: {
                 'visibility': 'visible'  // Explicitly set visibility to visible
