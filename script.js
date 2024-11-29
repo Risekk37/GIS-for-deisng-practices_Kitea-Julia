@@ -100,7 +100,7 @@ const map8Right = new maplibregl.Map({
 
 // 모든 맵을 배열로 관리
 const maps = [map1, map2,map3, map4, map5, map6];
-
+const zoomLevel = 5;
 // 공통 bounds 설정
 const bounds = [
     [-120.6069919549103, 25.7269043062651 ], // 남서쪽 경도, 위도, 
@@ -125,7 +125,7 @@ window.addEventListener('resize', () => {
     });
 });
 
-const imageBounds = [
+/*const imageBounds = [
     [-125.09472580225837,49.07458957975434], // 남서쪽 (좌하단)
     [-66.22622388033614, 49.07458957975434],   // 남동쪽 (우하단) 
     [-66.22622388033614, 25.330728914474506],  // 북동쪽 (우상단)
@@ -146,7 +146,7 @@ map1.on('load', () => {
         type: 'raster',
         source: 'overlayImage',
         paint: {
-            'raster-opacity': 0.8 // 투명도 조절 (0~1)
+            'raster-opacity': 0.2 // 투명도 조절 (0~1)
         }
     });
 });
