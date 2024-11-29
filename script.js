@@ -125,7 +125,7 @@ window.addEventListener('resize', () => {
     });
 });
 
-/*const imageBounds = [
+const imageBounds = [
     [-125.09472580225837,49.07458957975434], // 남서쪽 (좌하단)
     [-66.22622388033614, 49.07458957975434],   // 남동쪽 (우하단) 
     [-66.22622388033614, 25.330728914474506],  // 북동쪽 (우상단)
@@ -136,7 +136,7 @@ map1.on('load', () => {
     // 이미지 소스 추가
     map1.addSource('overlayImage', {
         type: 'image',
-        url: `${baseURL}/geo2.png`, // 오버레이할 이미지 경로
+        url: `${baseURL}/geo3.png`, // 오버레이할 이미지 경로
         coordinates: imageBounds
     });
 
@@ -146,7 +146,7 @@ map1.on('load', () => {
         type: 'raster',
         source: 'overlayImage',
         paint: {
-            'raster-opacity': 0.2 // 투명도 조절 (0~1)
+            'raster-opacity': 0.5 // 투명도 조절 (0~1)
         }
     });
 });
