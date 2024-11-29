@@ -125,30 +125,57 @@ window.addEventListener('resize', () => {
     });
 });
 
+const overlaySourceId = 'overlayImage';
+const overlayImageUrl = `${baseURL}/geo7.png`;
 const imageBounds = [
-    [-125.09472580225837,49.07458957975434], // 남서쪽 (좌하단)
-    [-66.22622388033614, 49.07458957975434],   // 남동쪽 (우하단) 
-    [-66.22622388033614, 25.330728914474506],  // 북동쪽 (우상단)
-    [-125.09472580225837, 25.330728914474506],  // 북서쪽 (좌상단)
+    [-125.09472580225837,49.37458957975434], // 남서쪽 (좌하단)
+    [-65.72622388033614, 49.37458957975434],   // 남동쪽 (우하단) 
+    [-65.72622388033614, 24.930728914474506],  // 북동쪽 (우상단)
+    [-125.09472580225837, 24.930728914474506],  // 북서쪽 (좌상단)
 ];
+// 공통 소스를 추가하는 함수
+function addOverlaySource(map) {
+    if (!map.getSource(overlaySourceId)) {
+        map.addSource(overlaySourceId, {
+            type: 'image',
+            url: overlayImageUrl,
+            coordinates: imageBounds
+        });
+    }
+    // 레이어가 이미 추가되어 있는지 확인
+    if (!map.getLayer('overlayImageLayer')) {
+        map.addLayer({
+            id: 'overlayImageLayer',
+            type: 'raster',
+            source: overlaySourceId,
+            paint: {
+                'raster-opacity': 0.1, // 투명도 조절
+                'raster-brightness-min': 0,
+                'raster-brightness-max': 1,
+                'raster-contrast': 0.7,
+                'raster-saturation': 0.5
+            }
+        });
+    }
+}
 
 map1.on('load', () => {
-    // 이미지 소스 추가
-    map1.addSource('overlayImage', {
-        type: 'image',
-        url: `${baseURL}/geo3.png`, // 오버레이할 이미지 경로
-        coordinates: imageBounds
-    });
-
-    // 이미지 레이어 추가
-    map1.addLayer({
-        id: 'overlayImageLayer',
-        type: 'raster',
-        source: 'overlayImage',
-        paint: {
-            'raster-opacity': 0.5 // 투명도 조절 (0~1)
-        }
-    });
+    addOverlaySource(map1);
+});
+map2.on('load', () => {
+    addOverlaySource(map2);
+});
+map3.on('load', () => {
+    addOverlaySource(map3);
+});
+map4.on('load', () => {
+    addOverlaySource(map4);
+});
+map5.on('load', () => {
+    addOverlaySource(map5);
+});
+map6.on('load', () => {
+    addOverlaySource(map6);
 });
 
 map1.on('load', () => {
@@ -282,17 +309,6 @@ map1.on('load', () => {
         }
     });
 
-    // 다각형 테두리를 설정하려면 'fill-outline-color' 사용
-    map1.addLayer({
-        id: 'UberEats-Fill-Outline',
-        type: 'line',   // 테두리 표시를 위해 line 타입 사용
-        source: 'UberEats',
-        paint: {
-            'line-color': '#FF9900',   // 테두리 색상
-            'line-width': 2,
-            'line-opacity':0             // 테두리 두께
-        }
-    });
 
     map1.addSource('GrubHub', {
         type: 'geojson',
@@ -309,18 +325,6 @@ map1.on('load', () => {
         }
     });
 
-    // 다각형 테두리를 설정하려면 'fill-outline-color' 사용
-    map1.addLayer({
-        id: 'GrubHub-Fill-Outline',
-        type: 'line',   // 테두리 표시를 위해 line 타입 사용
-        source: 'GrubHub',
-        paint: {
-            'line-color': '#FF9900',   // 테두리 색상
-            'line-width': 2,
-            'line-opacity':0             // 테두리 두께
-        }
-    });
-
     map1.addSource('DoorDash', {
         type: 'geojson',
         data: `${baseURL}/Meal/Door_Dash_C.geojson`,
@@ -332,18 +336,6 @@ map1.on('load', () => {
         paint: {
             'fill-color': '#EB1700',    // 다각형 영역 색상
             'fill-opacity': 0.7         // 투명도 설정
-        }
-    });
-
-    // 다각형 테두리를 설정하려면 'fill-outline-color' 사용
-    map1.addLayer({
-        id: 'DoorDash-Fill-Outline',
-        type: 'line',   // 테두리 표시를 위해 line 타입 사용
-        source: 'DoorDash',
-        paint: {
-            'line-color': '#EB1700',   // 테두리 색상
-            'line-width': 2,
-            'line-opacity':0            // 테두리 두께
         }
     });
 });
@@ -500,7 +492,7 @@ map2.on('load', () => {
             }
         });
     });
-
+   
     map4.on('load', () => {
         map4.addSource('UberEats', {
             type: 'geojson',
@@ -514,18 +506,6 @@ map2.on('load', () => {
             paint: {
                 'fill-color': '#4CFFB4',    // 다각형 영역 색상
                 'fill-opacity': 0.7         // 투명도 설정
-            }
-        });
-    
-        // 다각형 테두리를 설정하려면 'fill-outline-color' 사용
-        map4.addLayer({
-            id: 'UberEats-Fill-Outline',
-            type: 'line',   // 테두리 표시를 위해 line 타입 사용
-            source: 'UberEats',
-            paint: {
-                'line-color': '#FF9900',   // 테두리 색상
-                'line-width': 2,
-                'line-opacity':0             // 테두리 두께
             }
         });
 
@@ -543,18 +523,6 @@ map2.on('load', () => {
                 'fill-opacity': 0.7         // 투명도 설정
             }
         });
-    
-        // 다각형 테두리를 설정하려면 'fill-outline-color' 사용
-        map4.addLayer({
-            id: 'GrubHub-Fill-Outline',
-            type: 'line',   // 테두리 표시를 위해 line 타입 사용
-            source: 'GrubHub',
-            paint: {
-                'line-color': '#FF9900',   // 테두리 색상
-                'line-width': 2,
-                'line-opacity':0             // 테두리 두께
-            }
-        });
 
         map4.addSource('DoorDash', {
             type: 'geojson',
@@ -567,18 +535,6 @@ map2.on('load', () => {
             paint: {
                 'fill-color': '#EB1700',    // 다각형 영역 색상
                 'fill-opacity': 0.7         // 투명도 설정
-            }
-        });
-    
-        // 다각형 테두리를 설정하려면 'fill-outline-color' 사용
-        map4.addLayer({
-            id: 'DoorDash-Fill-Outline',
-            type: 'line',   // 테두리 표시를 위해 line 타입 사용
-            source: 'DoorDash',
-            paint: {
-                'line-color': '#EB1700',   // 테두리 색상
-                'line-width': 2,
-                'line-opacity':0            // 테두리 두께
             }
         });
     });
@@ -637,8 +593,7 @@ map2.on('load', () => {
         });
     });
    
-
-
+   
     map6.on('load', () => {
         map6.addSource('D_GM', {
             type: 'geojson',
