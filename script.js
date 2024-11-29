@@ -103,7 +103,7 @@ const maps = [map1, map2,map3, map4, map5, map6];
 
 // 공통 bounds 설정
 const bounds = [
-    [-123.6069919549103, 25.7269043062651 ], // 남서쪽 경도, 위도, 
+    [-120.6069919549103, 25.7269043062651 ], // 남서쪽 경도, 위도, 
     [-65.88793919356102, 51.33690746226263]   // 북동쪽 경도, 위도, 
 ];
 
@@ -122,6 +122,32 @@ window.addEventListener('resize', () => {
             padding: 20,
             animate: false
         });
+    });
+});
+
+const imageBounds = [
+    [-123.73989505688397, 25.830728914474506], // 남서쪽 (좌하단)
+    [-67.22622388033614, 26.225610785856098],  // 남동쪽 (우하단)
+    [-67.08335193247346, 49.07458957975434],  // 북동쪽 (우상단)
+    [-125.09472580225837,48.32305752393471]  // 북서쪽 (좌상단)
+];
+
+map1.on('load', () => {
+    // 이미지 소스 추가
+    map.addSource('overlayImage', {
+        type: 'image',
+        url: `${baseURL}/geo.png`, // 오버레이할 이미지 경로
+        coordinates: imageBounds
+    });
+
+    // 이미지 레이어 추가
+    map1.addLayer({
+        id: 'overlayImageLayer',
+        type: 'raster',
+        source: 'overlayImage',
+        paint: {
+            'raster-opacity': 0.8 // 투명도 조절 (0~1)
+        }
     });
 });
 
