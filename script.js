@@ -158,7 +158,7 @@ function addOverlaySource(map) {
         });
     }
 }
-
+/*
 const ScaleBarId = 'ScaleBarImage';
 const ScaleBarUrl = `${baseURL}/ScaleBar2.png`;
 const imageBounds_S = [
@@ -195,7 +195,7 @@ const imageBounds_S2 = [
     [-95.7757859079448, 29.002825223402472],   // 남동쪽 (우하단) 29.392825223402472, -95.7757859079448
     [-95.7757859079448, 22.003398078272198],  // 북동쪽 (우상단) 29.18928401549809, -94.90284861886872
     [-112.245891319786, 22.003398078272198],  // 북서쪽 (좌상단) 29.333051165199294, -94.91383494655295
-    */
+    
     [-94.88383494655295, 29.343051165199294], // 남서쪽 (좌하단)29.310049242587393, -94.6350169752689
     [-94.2350169752689, 29.343051165199294],   // 남동쪽 (우하단) 29.392825223402472, -95.7757859079448
     [-94.2350169752689, 28.59209721218061],  // 북동쪽 (우상단) 29.18928401549809, -94.90284861886872
@@ -251,7 +251,7 @@ function addSclaeBar3Source(map) {
             }
         });
     }
-}
+}*/
 
 map1.on('load', () => {
     addOverlaySource(map1);
@@ -274,7 +274,7 @@ map6.on('load', () => {
 map1.on('load', () => {
     addSclaeBarSource(map1);
 });
-
+/*
 map2.on('load', () => {
     addSclaeBarSource(map2);
 });
@@ -298,7 +298,7 @@ map8Left.on('load', () => {
 });
 map8Right.on('load', () => {
     addSclaeBar3Source(map8Right);
-});
+}); */
 map1.on('load', () => {
     map1.addSource('Target', {
         type: 'geojson',
