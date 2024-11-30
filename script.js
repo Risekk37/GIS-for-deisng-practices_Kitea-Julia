@@ -1334,25 +1334,17 @@ const SCROLL_THRESHOLD = 100;
 
 const isScrollEnabled = () => document.body.classList.contains('scroll-enabled');
 
-window.addEventListener('wheel', function(event) {
-    if (!isScrollEnabled()) {
-        event.preventDefault();
+// Map 이동 함수
+function goToMap(mapNumber) {
+    if (mapNumber >= 1 && mapNumber <= 8) {
+        currentMap = mapNumber;
+        scrollPosition = 0; // 스크롤 초기화
+        updateMaps();
     }
+}
 
-    scrollPosition += event.deltaY;
-
-    if (currentMap >= 1 && currentMap <= 8) {
-        if (scrollPosition >= SCROLL_THRESHOLD && currentMap < 10) {
-            currentMap++;
-            scrollPosition = 0;
-        } else if (scrollPosition <= -SCROLL_THRESHOLD && currentMap > 1) {
-            currentMap--;
-            scrollPosition = 0;
-        }
-    
-    }
-
-    // 각 맵에 대해 활성화/비활성화 처리
+// 맵 및 버튼 업데이트 함수
+function updateMaps() {
     for (let i = 1; i <= 8; i++) {
         const mapDiv = document.getElementById(`map${i}`);
         if (mapDiv) {
@@ -1364,15 +1356,16 @@ window.addEventListener('wheel', function(event) {
             textDiv.style.display = (currentMap === i) ? 'block' : 'none';
         }
 
-        // 각 맵에 해당하는 버튼들 처리
         const mapControls = document.getElementById(`map${i}-controls`);
         if (mapControls) {
-            if (currentMap === i) {
-                mapControls.style.display = 'block'; // 현재 활성화된 맵의 버튼만 보이도록
-            } else {
-                mapControls.style.display = 'none'; // 비활성화된 맵의 버튼은 숨김
-            }
+            mapControls.style.display = (currentMap === i) ? 'block' : 'none';
         }
+
+        // 버튼 강조 업데이트
+        const button = document.querySelector(`#map-buttons button:nth-child(${i})`);
+if (button) {
+    button.style.backgroundColor = (currentMap === i) ? 'rgba(255, 255, 255, 0.5)' : 'transparent';
+}
     }
 
     // map1-controls는 항상 숨기기
@@ -1380,4 +1373,24 @@ window.addEventListener('wheel', function(event) {
     if (map1Controls) {
         map1Controls.style.display = 'none';
     }
+}
+
+// 스크롤 이벤트
+window.addEventListener('wheel', function (event) {
+    if (!isScrollEnabled()) {
+        event.preventDefault();
+    }
+
+    scrollPosition += event.deltaY;
+
+    // 스크롤 방향에 따라 맵 이동
+    if (scrollPosition >= SCROLL_THRESHOLD && currentMap < 8) {
+        currentMap++;
+        scrollPosition = 0;
+    } else if (scrollPosition <= -SCROLL_THRESHOLD && currentMap > 1) {
+        currentMap--;
+        scrollPosition = 0;
+    }
+
+    updateMaps();
 });
