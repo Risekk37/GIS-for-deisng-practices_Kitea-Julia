@@ -162,10 +162,10 @@ function addOverlaySource(map) {
 const ScaleBarId = 'ScaleBarImage';
 const ScaleBarUrl = `${baseURL}/ScaleBar2.png`;
 const imageBounds_S = [
-    [-71.245891319786,26.864561763191883], // 남서쪽 (좌하단)
-    [-56.952451708312374, 26.864561763191883],   // 남동쪽 (우하단) 
-    [-56.952451708312374, 24.863398078272198],  // 북동쪽 (우상단)
-    [-71.245891319786, 24.863398078272198],  // 북서쪽 (좌상단)
+    [-120.245891319786,29.129321440264807], // 남서쪽 (좌하단)
+    [-94.44691601898118, 29.129321440264807],   // 남동쪽 (우하단) 29.129321440264807, -94.44691601898118
+    [-94.44691601898118, 18.863398078272198],  // 북동쪽 (우상단)
+    [-120.245891319786, 18.863398078272198],  // 북서쪽 (좌상단)
 ];
 // 공통 소스를 추가하는 함수
 function addSclaeBarSource(map) {
@@ -182,6 +182,66 @@ function addSclaeBarSource(map) {
             id: 'SacleBarImageLayer',
             type: 'raster',
             source: ScaleBarId,
+            paint: {
+                'raster-opacity': 1, // 투명도 조절
+            }
+        });
+    }
+}
+
+const ScaleBar2Id = 'ScaleBar2Image';
+const ScaleBar2Url = `${baseURL}/ScaleBar_9.png`;
+const imageBounds_S2 = [
+    [-71.245891319786,27.364561763191883], // 남서쪽 (좌하단)
+    [-56.952451708312374, 27.364561763191883],   // 남동쪽 (우하단) 
+    [-56.952451708312374, 25.863398078272198],  // 북동쪽 (우상단)
+    [-71.245891319786, 25.863398078272198],  // 북서쪽 (좌상단)
+];
+// 공통 소스를 추가하는 함수
+function addSclaeBar2Source(map) {
+    if (!map.getSource(ScaleBar2Id)) {
+        map.addSource(ScaleBar2Id, {
+            type: 'image',
+            url: ScaleBar2Url,
+            coordinates: imageBounds_S2
+        });
+    }
+    // 레이어가 이미 추가되어 있는지 확인
+    if (!map.getLayer('SacleBar2ImageLaye')) {
+        map.addLayer({
+            id: 'SacleBar2ImageLayer',
+            type: 'raster',
+            source: ScaleBar2Id,
+            paint: {
+                'raster-opacity': 1, // 투명도 조절
+            }
+        });
+    }
+}
+
+const ScaleBar3Id = 'ScaleBar3Image';
+const ScaleBar3Url = `${baseURL}/ScaleBar_14.png`;
+const imageBounds_S3 = [
+    [-71.245891319786,27.364561763191883], // 남서쪽 (좌하단)
+    [-56.952451708312374, 27.364561763191883],   // 남동쪽 (우하단) 
+    [-56.952451708312374, 25.863398078272198],  // 북동쪽 (우상단)
+    [-71.245891319786, 25.863398078272198],  // 북서쪽 (좌상단)
+];
+// 공통 소스를 추가하는 함수
+function addSclaeBar3Source(map) {
+    if (!map.getSource(ScaleBar3Id)) {
+        map.addSource(ScaleBar3Id, {
+            type: 'image',
+            url: ScaleBar3Url,
+            coordinates: imageBounds_S3
+        });
+    }
+    // 레이어가 이미 추가되어 있는지 확인
+    if (!map.getLayer('SacleBar3ImageLaye')) {
+        map.addLayer({
+            id: 'SacleBar3ImageLayer',
+            type: 'raster',
+            source: ScaleBar3Id,
             paint: {
                 'raster-opacity': 1, // 투명도 조절
             }
@@ -225,6 +285,12 @@ map5.on('load', () => {
 });
 map6.on('load', () => {
     addSclaeBarSource(map6);
+});
+map7.on('load', () => {
+    addSclaeBar2Source(map7);
+});
+map8.on('load', () => {
+    addSclaeBar3Source(map8);
 });
 map1.on('load', () => {
     map1.addSource('Target', {
