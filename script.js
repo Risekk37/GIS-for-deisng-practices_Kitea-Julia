@@ -160,7 +160,7 @@ function addOverlaySource(map) {
 }
 
 const ScaleBarId = 'ScaleBarImage';
-const ScaleBarUrl = `${baseURL}/ScaleBar.png`;
+const ScaleBarUrl = `${baseURL}/ScaleBar2.png`;
 const imageBounds_S = [
     [-71.245891319786,26.864561763191883], // 남서쪽 (좌하단)
     [-56.952451708312374, 26.864561763191883],   // 남동쪽 (우하단) 
