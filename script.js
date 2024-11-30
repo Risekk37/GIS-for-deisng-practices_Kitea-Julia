@@ -162,10 +162,10 @@ function addOverlaySource(map) {
 const ScaleBarId = 'ScaleBarImage';
 const ScaleBarUrl = `${baseURL}/ScaleBar2.png`;
 const imageBounds_S = [
-    [-120.245891319786,29.129321440264807], // 남서쪽 (좌하단)
-    [-94.44691601898118, 29.129321440264807],   // 남동쪽 (우하단) 29.129321440264807, -94.44691601898118
-    [-94.44691601898118, 18.863398078272198],  // 북동쪽 (우상단)
-    [-120.245891319786, 18.863398078272198],  // 북서쪽 (좌상단)
+    [-71.245891319786,27.364561763191883], // 남서쪽 (좌하단)
+    [-56.952451708312374, 27.364561763191883],   // 남동쪽 (우하단) 
+    [-56.952451708312374, 25.863398078272198],  // 북동쪽 (우상단)
+    [-71.245891319786, 25.863398078272198],  // 북서쪽 (좌상단)
 ];
 // 공통 소스를 추가하는 함수
 function addSclaeBarSource(map) {
@@ -188,14 +188,13 @@ function addSclaeBarSource(map) {
         });
     }
 }
-
 const ScaleBar2Id = 'ScaleBar2Image';
 const ScaleBar2Url = `${baseURL}/ScaleBar_9.png`;
 const imageBounds_S2 = [
-    [-112.245891319786,29.392825223402472], // 남서쪽 (좌하단)
-    [-95.7757859079448, 29.392825223402472],   // 남동쪽 (우하단) 29.392825223402472, -95.7757859079448
-    [-95.7757859079448, 22.863398078272198],  // 북동쪽 (우상단)
-    [-112.245891319786, 22.863398078272198],  // 북서쪽 (좌상단)
+    [-112.245891319786,29.002825223402472], // 남서쪽 (좌하단)
+    [-95.7757859079448, 29.002825223402472],   // 남동쪽 (우하단) 29.392825223402472, -95.7757859079448
+    [-95.7757859079448, 22.003398078272198],  // 북동쪽 (우상단) 29.18928401549809, -94.90284861886872
+    [-112.245891319786, 22.003398078272198],  // 북서쪽 (좌상단)
 ];
 // 공통 소스를 추가하는 함수
 function addSclaeBar2Source(map) {
@@ -267,10 +266,10 @@ map5.on('load', () => {
 map6.on('load', () => {
     addOverlaySource(map6);
 });
-
 map1.on('load', () => {
     addSclaeBarSource(map1);
 });
+
 map2.on('load', () => {
     addSclaeBarSource(map2);
 });
@@ -290,10 +289,10 @@ map7.on('load', () => {
     addSclaeBar2Source(map7);
 });
 map8Left.on('load', () => {
-    addSclaeBar3Source(map8);
+    addSclaeBar3Source(map8Left);
 });
 map8Right.on('load', () => {
-    addSclaeBar3Source(map8);
+    addSclaeBar3Source(map8Right);
 });
 map1.on('load', () => {
     map1.addSource('Target', {
@@ -1117,6 +1116,24 @@ map2.on('load', () => {
         });
     
     
+});
+
+map8Left.on('load', () => {
+    // Source 추가
+    map8Left.addSource('houses', {
+        type: 'geojson',
+        data: `${baseURL}/houses.geojson`,
+    });
+
+    map8Left.addLayer({
+        id: 'House',
+        type: 'fill',
+        source: 'houses',
+        paint: {
+            'fill-color': '#ffffff', // 다각형 영역 색상
+            'fill-opacity': 0.7,    // 투명도 설정
+        }
+    });
 });
     /*map9.on('load', () => {
         map9.addSource('P_R_P', {
