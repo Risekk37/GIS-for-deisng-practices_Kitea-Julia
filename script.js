@@ -177,7 +177,7 @@ function addSclaeBarSource(map) {
         });
     }
     // 레이어가 이미 추가되어 있는지 확인
-    if (!map.getLayer('SacleBarImageLaye')) {
+    if (!map.getLayer('SacleBarImageLayer')) {
         map.addLayer({
             id: 'SacleBarImageLayer',
             type: 'raster',
@@ -207,7 +207,7 @@ function addSclaeBar2Source(map) {
         });
     }
     // 레이어가 이미 추가되어 있는지 확인
-    if (!map.getLayer('SacleBar2ImageLaye')) {
+    if (!map.getLayer('SacleBar2ImageLayer')) {
         map.addLayer({
             id: 'SacleBar2ImageLayer',
             type: 'raster',
@@ -237,7 +237,7 @@ function addSclaeBar3Source(map) {
         });
     }
     // 레이어가 이미 추가되어 있는지 확인
-    if (!map.getLayer('SacleBar3ImageLaye')) {
+    if (!map.getLayer('SacleBar3ImageLayer')) {
         map.addLayer({
             id: 'SacleBar3ImageLayer',
             type: 'raster',
@@ -267,10 +267,10 @@ map5.on('load', () => {
 map6.on('load', () => {
     addOverlaySource(map6);
 });
+
 map1.on('load', () => {
     addSclaeBarSource(map1);
 });
-
 map2.on('load', () => {
     addSclaeBarSource(map2);
 });
