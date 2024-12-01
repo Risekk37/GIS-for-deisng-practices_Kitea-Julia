@@ -184,8 +184,68 @@ button {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* 기본 스타일 */
 button:hover {
-    background-color: #FF9900;
+    transition: background-color 0.3s ease; /* 부드러운 전환 효과 */
+}
+
+/* Amazon 버튼 */
+#toggleAmazon:hover {
+    background-color: #cc0000; /* 오렌지색 */
+}
+
+/* UPS 버튼 */
+#toggleUPS:hover {
+    background-color: #FFD800; /* 보라색 */
+}
+
+/* Target 버튼 */
+#toggleTarget:hover {
+    background-color: #cc0000; /* 빨간색 */
+}
+
+/* Trader Joe's 버튼 */
+#toggleTrader:hover {
+    background-color: #ff69b4; /* 금색 */
+}
+
+/* Walmart 버튼 */
+#toggleWalmart:hover {
+    background-color: #ffc220; /* 파란색 */
+}
+
+/* Whole Food 버튼 */
+#toggleWhole:hover {
+    background-color: #00674b; /* 초록색 */
+}
+
+/* DoorDash 버튼 */
+#toggleDoorDash:hover {
+    background-color: #EB1700; /* 다크 오렌지 */
+}
+
+/* Grubhub 버튼 */
+#toggleGrubHub:hover {
+    background-color: #FFA943; /* 다크 바이올렛 */
+}
+
+/* UberEats 버튼 */
+#toggleUberEats:hover {
+    background-color: #4CFFB4; /* 포레스트 그린 */
+}
+/* Delivery Desert 5k Pop 버튼 */
+#toggleD_GM:hover {
+    background-color: #EB1700; /* 라이트 시그린 */
+}
+
+/* Food + Delivery Desert 5k Pop 버튼 */
+#toggleF_D_GM:hover {
+    background-color: #f7941d; /* 블루 바이올렛 */
+}
+
+/* Case Study Areas 버튼 */
+#toggleF_D_GM_P:hover {
+    background-color: #ffff88; /* 브라운 */
 }
 
 mi {
@@ -255,7 +315,7 @@ mi {
     right: 1.5vw;
     width: 22%; /* 맵 크기에 맞춰 조정 */
     height: 5%;
-    object-fit: cover; /* 이미지 비율 유지 */
+    object-fit: contain; /* 이미지 비율 유지 */
     pointer-events: none; /* 지도의 인터랙션 유지 */
     z-index: 3; /* 맵 위에 표시되도록 설정 */
 }

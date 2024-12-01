@@ -794,7 +794,7 @@ map2.on('load', () => {
             paint: {
                 'line-color': '#fffff0', // 테두리 색상
                 'line-width': 8,        // 테두리 두께
-                'line-opacity': 0.6,    // 테두리 불투명도
+                'line-opacity': 0.3,    // 테두리 불투명도
             },
             layout: {
                 'line-join': 'round',  // 선 연결부를 둥글게 처리
@@ -809,9 +809,9 @@ map2.on('load', () => {
             source: 'F_D_GM_P',
             paint: {
                 'line-color': '#fffff0', // 테두리 색상
-                'line-width': 100,        // 테두리 두께
-                'line-opacity': 0.3,    // 테두리 불투명도
-                'line-blur': 100 // 경계 확장
+                'line-width': 30,        // 테두리 두께
+                'line-opacity': 0.1,    // 테두리 불투명도
+                'line-blur': 10 // 경계 확장
             },
             layout: {
                 'line-join': 'round',  // 선 연결부를 둥글게 처리
@@ -826,7 +826,7 @@ map2.on('load', () => {
             source: 'F_D_GM_P',
             paint: {
                 'fill-color': '#EB1700', // 다각형 영역 색상
-                'fill-opacity': 0.7,    // 투명도 설정
+                'fill-opacity': 0.8,    // 투명도 설정
             },
             layout: {
                 'visibility': 'none'   // 선 끝부분을 둥글게 처리
