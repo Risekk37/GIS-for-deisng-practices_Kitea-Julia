@@ -1,12 +1,8 @@
-const baseURL = window.location.hostname === "localhost"
-    ? "" 
-    : "https://risekk37.github.io/GIS-for-design-practices_Kitae-Julia";
 
-
-const styleURL = `${baseURL}/positron.json`;
+const styleURL = `positron.json`;
 const map1 = new maplibregl.Map({
     container: 'map1',
-    style: `${baseURL}/positron.json`,
+    style: `positron.json`,
     center: [-90.3070003, 40.2892984],
     zoom: 4,
     scrollZoom: false,
@@ -16,7 +12,7 @@ const map1 = new maplibregl.Map({
 
 const map2 = new maplibregl.Map({
     container: 'map2',
-    style: `${baseURL}/positron.json`,
+    style: `positron.json`,
     center: [-90.3070003, 40.2892984],
     zoom: 4,
     scrollZoom: false,
@@ -25,7 +21,7 @@ const map2 = new maplibregl.Map({
 
 const map3 = new maplibregl.Map({
     container: 'map3',
-    style: `${baseURL}/positron.json`,
+    style: `positron.json`,
     center: [-90.3070003, 40.2892984],
     zoom: 4,
     scrollZoom: false,
@@ -34,7 +30,7 @@ const map3 = new maplibregl.Map({
 
 const map4 = new maplibregl.Map({
     container: 'map4',
-    style: `${baseURL}/positron.json`,
+    style: `positron.json`,
     center: [-90.3070003, 40.2892984],
     zoom: 4,
     scrollZoom: false,
@@ -43,7 +39,7 @@ const map4 = new maplibregl.Map({
 
 const map5 = new maplibregl.Map({
     container: 'map5',
-    style: `${baseURL}/positron.json`,
+    style: `positron.json`,
     center: [-90.3070003, 40.2892984],
     zoom: 4,
     scrollZoom: false,
@@ -52,25 +48,17 @@ const map5 = new maplibregl.Map({
 
 const map6 = new maplibregl.Map({
     container: 'map6',
-    style: `${baseURL}/positron.json`,
+    style: `positron.json`,
     center: [-90.3070003, 40.2892984],
     zoom: 4,
     scrollZoom: false,
     dragPan: false
 });
 
-/*const map7 = new maplibregl.Map({
-    container: 'map7',
-    style: `${baseURL}/positron.json`,
-    center: [-79.32787967776974, 35.59208970407508],
-    zoom:10,
-    scrollZoom: false,
-    dragPan: false
-});*/
 
 const map7 = new maplibregl.Map({
     container: 'map7',
-    style: `${baseURL}/positron.json`,
+    style: `positron.json`,
     center: [-95.49896976107271, 29.600411958015386],
     zoom: 9,
     scrollZoom: false,
@@ -79,7 +67,7 @@ const map7 = new maplibregl.Map({
 
 const map8Left = new maplibregl.Map({
     container: 'map8Left',
-    style: `${baseURL}/positron_Small.json`,
+    style: `positron_Small.json`,
     center: [-95.80155173605988, 29.403778064902202],
     zoom: 14.5,
     scrollZoom: false,
@@ -126,7 +114,7 @@ window.addEventListener('resize', () => {
 });
 
 const overlaySourceId = 'overlayImage';
-const overlayImageUrl = `${baseURL}/geo7.png`;
+const overlayImageUrl = `geo7.png`;
 const imageBounds = [
     [-125.09472580225837,49.37458957975434], // 남서쪽 (좌하단)
     [-65.72622388033614, 49.37458957975434],   // 남동쪽 (우하단) 
@@ -158,100 +146,7 @@ function addOverlaySource(map) {
         });
     }
 }
-/*
-const ScaleBarId = 'ScaleBarImage';
-const ScaleBarUrl = `${baseURL}/ScaleBar2.png`;
-const imageBounds_S = [
-    [-71.245891319786,27.364561763191883], // 남서쪽 (좌하단)
-    [-56.952451708312374, 27.364561763191883],   // 남동쪽 (우하단) 
-    [-56.952451708312374, 25.863398078272198],  // 북동쪽 (우상단)
-    [-71.245891319786, 25.863398078272198],  // 북서쪽 (좌상단)
-];
-// 공통 소스를 추가하는 함수
-function addSclaeBarSource(map) {
-    if (!map.getSource(ScaleBarId)) {
-        map.addSource(ScaleBarId, {
-            type: 'image',
-            url: ScaleBarUrl,
-            coordinates: imageBounds_S
-        });
-    }
-    // 레이어가 이미 추가되어 있는지 확인
-    if (!map.getLayer('SacleBarImageLayer')) {
-        map.addLayer({
-            id: 'SacleBarImageLayer',
-            type: 'raster',
-            source: ScaleBarId,
-            paint: {
-                'raster-opacity': 1, // 투명도 조절
-            }
-        });
-    }
-}
-const ScaleBar2Id = 'ScaleBar2Image';
-const ScaleBar2Url = `${baseURL}/ScaleBar_9.png`;
-const imageBounds_S2 = [
-    /*[-112.245891319786,29.002825223402472], // 남서쪽 (좌하단)
-    [-95.7757859079448, 29.002825223402472],   // 남동쪽 (우하단) 29.392825223402472, -95.7757859079448
-    [-95.7757859079448, 22.003398078272198],  // 북동쪽 (우상단) 29.18928401549809, -94.90284861886872
-    [-112.245891319786, 22.003398078272198],  // 북서쪽 (좌상단) 29.333051165199294, -94.91383494655295
-    
-    [-94.88383494655295, 29.343051165199294], // 남서쪽 (좌하단)29.310049242587393, -94.6350169752689
-    [-94.2350169752689, 29.343051165199294],   // 남동쪽 (우하단) 29.392825223402472, -95.7757859079448
-    [-94.2350169752689, 28.59209721218061],  // 북동쪽 (우상단) 29.18928401549809, -94.90284861886872
-    [-94.88383494655295,  28.59209721218061]  // 북서쪽 (좌상단) 29.28209721218061, -94.9400978839912
-]
-    // 공통 소스를 추가하는 함수
-function addSclaeBar2Source(map) {
-    if (!map.getSource(ScaleBar2Id)) {
-        map.addSource(ScaleBar2Id, {
-            type: 'image',
-            url: ScaleBar2Url,
-            coordinates: imageBounds_S2
-        });
-    }
-    // 레이어가 이미 추가되어 있는지 확인
-    if (!map.getLayer('SacleBar2ImageLayer')) {
-        map.addLayer({
-            id: 'SacleBar2ImageLayer',
-            type: 'raster',
-            source: ScaleBar2Id,
-            paint: {
-                'raster-opacity': 1, // 투명도 조절
-            }
-        });
-    }
-}
 
-const ScaleBar3Id = 'ScaleBar3Image';
-const ScaleBar3Url = `${baseURL}/ScaleBar_14.png`;
-const imageBounds_S3 = [
-    [ -95.78780810220929,29.3978955938409], // 남서쪽 (좌하단)
-    [-95.77360613142608, 29.3978955938409],   // 남동쪽 (우하단) 
-    [-95.77360613142608, 29.38225516920497],  // 북동쪽 (우상단)
-    [ -95.78780810220929, 29.38225516920497],  // 북서쪽 (좌상단) 
-];
-// 공통 소스를 추가하는 함수
-function addSclaeBar3Source(map) {
-    if (!map.getSource(ScaleBar3Id)) {
-        map.addSource(ScaleBar3Id, {
-            type: 'image',
-            url: ScaleBar3Url,
-            coordinates: imageBounds_S3
-        });
-    }
-    // 레이어가 이미 추가되어 있는지 확인
-    if (!map.getLayer('SacleBar3ImageLayer')) {
-        map.addLayer({
-            id: 'SacleBar3ImageLayer',
-            type: 'raster',
-            source: ScaleBar3Id,
-            paint: {
-                'raster-opacity': 1, // 투명도 조절
-            }
-        });
-    }
-}*/
 
 map1.on('load', () => {
     addOverlaySource(map1);
@@ -271,38 +166,13 @@ map5.on('load', () => {
 map6.on('load', () => {
     addOverlaySource(map6);
 });
+
+
 map1.on('load', () => {
-    addSclaeBarSource(map1);
-});
-/*
-map2.on('load', () => {
-    addSclaeBarSource(map2);
-});
-map3.on('load', () => {
-    addSclaeBarSource(map3);
-});
-map4.on('load', () => {
-    addSclaeBarSource(map4);
-});
-map5.on('load', () => {
-    addSclaeBarSource(map5);
-});
-map6.on('load', () => {
-    addSclaeBarSource(map6);
-});
-map7.on('load', () => {
-    addSclaeBar2Source(map7);
-});
-map8Left.on('load', () => {
-    addSclaeBar3Source(map8Left);
-});
-map8Right.on('load', () => {
-    addSclaeBar3Source(map8Right);
-}); */
-map1.on('load', () => {
+
     map1.addSource('Target', {
         type: 'geojson',
-        data: `${baseURL}/Grocery/Target_Location.geojson`
+        data: `Grocery/Target_Location.geojson`
     });
     
     map1.addLayer({
@@ -330,9 +200,10 @@ map1.on('load', () => {
             'circle-stroke-opacity': 0.5            // 원의 투명도 설정
         }
     });
-    map1.addSource('Trader', {
+
+map1.addSource('Trader', {
         type: 'geojson',
-        data: `${baseURL}/Grocery/Trader_Joe_Location.geojson`
+        data: `Grocery/Trader_Joe_Location.geojson`
     });
 
     map1.addLayer({
@@ -358,9 +229,10 @@ map1.on('load', () => {
             'circle-stroke-opacity': 0.5            // 원의 투명도 설정
         }
     });
-    map1.addSource('Walmart', {
+  
+map1.addSource('Walmart', {
         type: 'geojson',
-        data: `${baseURL}/Grocery/Walmart_Location.geojson`
+        data: `Grocery/Walmart_Location.geojson`
     });
 
     map1.addLayer({
@@ -387,9 +259,10 @@ map1.on('load', () => {
         }
     });
 
+
     map1.addSource('Whole', {
         type: 'geojson',
-        data: `${baseURL}/Grocery/Whole_Food_Location.geojson`
+        data: `Grocery/Whole_Food_Location.geojson`
     });
 
     map1.addLayer({
@@ -415,9 +288,10 @@ map1.on('load', () => {
             'circle-stroke-opacity': 0.5          // 원의 투명도 설정
         }
     });
-    map1.addSource('UberEats', {
+  
+map1.addSource('UberEats', {
         type: 'geojson',
-        data: `${baseURL}/Meal/Uber_Eats_C.json`,
+        data: `Meal/Uber_Eats_C.json`,
 
     });
     map1.addLayer({
@@ -429,11 +303,10 @@ map1.on('load', () => {
             'fill-opacity': 0.7         // 투명도 설정
         }
     });
-
-
+ 
     map1.addSource('GrubHub', {
         type: 'geojson',
-        data: `${baseURL}/Meal/Grub_Hub_C.geojson`,
+        data: `Meal/Grub_Hub_C.geojson`,
 
     });
     map1.addLayer({
@@ -446,9 +319,9 @@ map1.on('load', () => {
         }
     });
 
-    map1.addSource('DoorDash', {
+map1.addSource('DoorDash', {
         type: 'geojson',
-        data: `${baseURL}/Meal/Door_Dash_C.geojson`,
+        data: `Meal/Door_Dash_C.geojson`,
     });
     map1.addLayer({
         id: 'DoorDash-Fill',
@@ -465,7 +338,7 @@ map2.on('load', () => {
     
     map2.addSource('UPS', {
         type: 'geojson',
-        data: `${baseURL}/Package/UPS_Facilities.geojson`
+        data: `Package/UPS_Facilities.geojson`
     });
 
     map2.addLayer({
@@ -481,7 +354,7 @@ map2.on('load', () => {
 
     map2.addSource('Amazon', {
         type: 'geojson',
-        data: `${baseURL}/Package/Amazon.geojson`
+        data: `Package/Amazon.geojson`
     });
 
     map2.addLayer({
@@ -499,7 +372,7 @@ map2.on('load', () => {
     map3.on('load', () => {
         map3.addSource('Target', {
             type: 'geojson',
-            data: `${baseURL}/Grocery/Target_Location.geojson`
+            data: `Grocery/Target_Location.geojson`
         });
         
         map3.addLayer({
@@ -529,7 +402,7 @@ map2.on('load', () => {
         });
         map3.addSource('Trader', {
             type: 'geojson',
-            data: `${baseURL}/Grocery/Trader_Joe_Location.geojson`
+            data: `Grocery/Trader_Joe_Location.geojson`
         });
     
         map3.addLayer({
@@ -557,7 +430,7 @@ map2.on('load', () => {
         });
         map3.addSource('Walmart', {
             type: 'geojson',
-            data: `${baseURL}/Grocery/Walmart_Location.geojson`
+            data: `Grocery/Walmart_Location.geojson`
         });
     
         map3.addLayer({
@@ -586,7 +459,7 @@ map2.on('load', () => {
     
         map3.addSource('Whole', {
             type: 'geojson',
-            data: `${baseURL}/Grocery/Whole_Food_Location.geojson`
+            data: `Grocery/Whole_Food_Location.geojson`
         });
     
         map3.addLayer({
@@ -617,7 +490,7 @@ map2.on('load', () => {
     map4.on('load', () => {
         map4.addSource('UberEats', {
             type: 'geojson',
-            data: `${baseURL}/Meal/Uber_Eats_C.json`,
+            data: `Meal/Uber_Eats_C.json`,
 
         });
         map4.addLayer({
@@ -632,7 +505,7 @@ map2.on('load', () => {
 
         map4.addSource('GrubHub', {
             type: 'geojson',
-            data: `${baseURL}/Meal/Grub_Hub_C.geojson`,
+            data: `Meal/Grub_Hub_C.geojson`,
 
         });
         map4.addLayer({
@@ -647,7 +520,7 @@ map2.on('load', () => {
 
         map4.addSource('DoorDash', {
             type: 'geojson',
-            data: `${baseURL}/Meal/Door_Dash_C.geojson`,
+            data: `Meal/Door_Dash_C.geojson`,
         });
         map4.addLayer({
             id: 'DoorDash-Fill',
@@ -663,7 +536,7 @@ map2.on('load', () => {
     map5.on('load', () => {
         map5.addSource('GM', {
             type: 'geojson',
-            data: `${baseURL}/Delivery_Desert/GM_P_1.json`,
+            data: `Delivery_Desert/GM_P_1.json`,
 
         });
         map5.addLayer({
@@ -681,7 +554,7 @@ map2.on('load', () => {
     
         map5.addSource('GM2', {
             type: 'geojson',
-            data: `${baseURL}/Delivery_Desert/GM_P_2.json`,
+            data: `Delivery_Desert/GM_P_2.json`,
 
         });
         map5.addLayer({
@@ -700,7 +573,7 @@ map2.on('load', () => {
        
         map5.addSource('GM3', {
             type: 'geojson',
-            data: `${baseURL}/Delivery_Desert/GM_P_3.json`,
+            data: `Delivery_Desert/GM_P_3.json`,
 
         });
         map5.addLayer({
@@ -718,7 +591,7 @@ map2.on('load', () => {
     map6.on('load', () => {
         map6.addSource('D_GM', {
             type: 'geojson',
-            data: `${baseURL}/Delivery_Desert/GM_P_3.json`,
+            data: `Delivery_Desert/GM_P_3.json`,
 
         });
 
@@ -732,7 +605,7 @@ map2.on('load', () => {
                 'fill-opacity': 0.4         // 투명도 설정
             }, 
             layout: {
-                'visibility': 'none'   // 선 끝부분을 둥글게 처리
+                'visibility': 'visible'   // 선 끝부분을 둥글게 처리
             }
         });
     
@@ -747,12 +620,12 @@ map2.on('load', () => {
                 'line-opacity':0             // 테두리 두께
             },
             layout: {
-                'visibility': 'none'   // 선 끝부분을 둥글게 처리
+                'visibility': 'visible'   // 선 끝부분을 둥글게 처리
             }
         });
         map6.addSource('F_D_GM', {
             type: 'geojson',
-            data: `${baseURL}/Delivery_Desert/Food_Desert_Grocery,Meal_Sub_Pop_5000Up.geojson`,
+            data: `Delivery_Desert/Food_Desert_Grocery,Meal_Sub_Pop_5000Up.geojson`,
 
         });
         
@@ -781,7 +654,7 @@ map2.on('load', () => {
 
         map6.addSource('F_D_GM_P', {
             type: 'geojson',
-            data: `${baseURL}/Delivery_Desert/Pick_Food_Desert_Grocery,Meal_Sub_Pop_5000Up.geojson`,
+            data: `Delivery_Desert/Pick_Food_Desert_Grocery,Meal_Sub_Pop_5000Up.geojson`,
 
         });
         
@@ -835,73 +708,35 @@ map2.on('load', () => {
 
         map6.addSource('F_D_GM_P_C', {
             type: 'geojson',
-            data: `${baseURL}/Delivery_Desert/Pick_Center.geojson`,
+            data: `Delivery_Desert/Pick_Center.geojson`,
 
         });
        
     });
     
-    /*map7.on('load', () => {
-        map7.addSource('P_R_P', {
-            type: 'geojson',
-            data: `${baseURL}/Delivery_Desert/Package_Radius_Pick.geojson`,
-
-        });
-        map7.addSource('G_P', {
-            type: 'geojson',
-            data: `${baseURL}/Delivery_Desert/Grocery_Pick.geojson`,
-
-        });
-           
-        // 다각형 테두리를 설정하려면 'fill-outline-color' 사용
-        map7.addLayer({
-            id: 'P_R_P-Fill-Outline',
-            type: 'line',   // 테두리 표시를 위해 line 타입 사용
-            source: 'P_R_P',
-            paint: {
-                'line-color': '#EB1700',   // 테두리 색상
-                'line-width': 2,
-                'line-opacity':0             // 테두리 두께
-            },layout: {
-                'visibility': 'visible'  // Explicitly set visibility to visible
-            }
-        });
-        map7.addLayer({
-            id: 'G_P-Circle',
-            type: 'circle',
-            source: 'G_P',
-            paint: {
-                'circle-radius': 1,
-                'circle-color': '#fffff0',
-                'circle-opacity': 1
-            },layout: {
-                'visibility': 'visible'  // Explicitly set visibility to visible
-            }
-        });
-    });*/
-
+   
     
     map7.on('load', () => {
         // Source 추가
         map7.addSource('Rosemeadow', {
             type: 'geojson',
-            data: `${baseURL}/Delivery_Desert/Rosemeadow.geojson`,
+            data: `Delivery_Desert/Rosemeadow.geojson`,
         });
         map7.addSource('UPS_D', {
             type: 'geojson',
-            data: `${baseURL}/Zoom_in/UPS_Dost.geojson`,
+            data: `Zoom_in/UPS_Dost.geojson`,
         });
         map7.addSource('UPS_R', {
             type: 'geojson',
-            data: `${baseURL}/Zoom_in/UPS_Round.geojson`,
+            data: `Zoom_in/UPS_Round.geojson`,
         });
         map7.addSource('UPS_L', {
             type: 'geojson',
-            data: `${baseURL}/Zoom_in/UPS_Line.geojson`,
+            data: `Zoom_in/UPS_Line.geojson`,
         });
         map7.addSource('UPS_PD', {
             type: 'geojson',
-            data: `${baseURL}/Zoom_in/UPS_Pick_Dot.geojson`,
+            data: `Zoom_in/UPS_Pick_Dot.geojson`,
         });
        
     
@@ -1012,71 +847,19 @@ map2.on('load', () => {
                 'circle-stroke-opacity': 1  
             }
         });
-        // P_R_P Layer - 테두리 선
-        /*map7.addLayer({
-            id: 'Cir1-Border',
-            type: 'line',
-            source: 'Cir1',
-            paint: {
-                'line-color': '#FFD800',      // 테두리 색상
-                'line-width': 1.5,             // 테두리 두께
-                'line-opacity': 1,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
-            },
-            layout: {
-                'visibility': 'visible',    // 초기 상태에서 보이도록 설정
-            },
-        });
-        map7.addLayer({
-            id: 'Cir2-Border',
-            type: 'line',
-            source: 'Cir2',
-            paint: {
-                'line-color': '#FFD800',      // 테두리 색상
-                'line-width': 1.5,             // 테두리 두께
-                'line-opacity': 1,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
-            },
-            layout: {
-                'visibility': 'visible',    // 초기 상태에서 보이도록 설정
-            },
-        });*/
-        
-        /*map7.addLayer({
-            id: 'UPS_M',
-            type: 'line',
-            source: 'UPS_L1',
-            paint: {
-                'line-color': '#FFD800',      // 테두리 색상
-                'line-width': 2.5,             // 테두리 두께
-                'line-opacity': 1,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
-            },
-            layout: {
-                'visibility': 'visible',    // 초기 상태에서 보이도록 설정
-            },
-        });map7.addLayer({
-            id: 'UPS_T',
-            type: 'line',
-            source: 'UPS_L2',
-            paint: {
-                'line-color': '#FFD800',      // 테두리 색상
-                'line-width': 1,             // 테두리 두께
-                'line-opacity': 1,           // 테두리 불투명도 (0 = 투명, 1 = 불투명)
-            },
-            layout: {
-                'visibility': 'visible',    // 초기 상태에서 보이도록 설정
-            },
-        });*/
+       
 
         map7.addSource('HIgh_way', {
             type: 'geojson',
-            data: `${baseURL}/Zoom_in/map_00.geojson`,
+            data: `Zoom_in/map_00.geojson`,
         });
         map7.addSource('HIgh_way2', {
             type: 'geojson',
-            data: `${baseURL}/Zoom_in/map_11.geojson`,
+            data: `Zoom_in/map_11.geojson`,
         });
         map7.addSource('HIgh_way3', {
             type: 'geojson',
-            data: `${baseURL}/Zoom_in/map_22.geojson`,
+            data: `Zoom_in/map_22.geojson`,
         });
     
         // P_R_P Layer - 테두리 선
@@ -1127,7 +910,7 @@ map8Left.on('load', () => {
     // Source 추가
     map8Left.addSource('houses', {
         type: 'geojson',
-        data: `${baseURL}/houses.geojson`,
+        data: `houses.geojson`,
     });
 
     map8Left.addLayer({
@@ -1140,45 +923,7 @@ map8Left.on('load', () => {
         }
     });
 });
-    /*map9.on('load', () => {
-        map9.addSource('P_R_P', {
-            type: 'geojson',
-            data: `${baseURL}/Delivery_Desert/Package_Radius_Pick.geojson`,
-
-        });
-        map9.addSource('G_P', {
-            type: 'geojson',
-            data: `${baseURL}/Delivery_Desert/Grocery_Pick.geojson`,
-
-        });
-           
-        // 다각형 테두리를 설정하려면 'fill-outline-color' 사용
-        map9.addLayer({
-            id: 'P_R_P-Fill-Outline',
-            type: 'line',   // 테두리 표시를 위해 line 타입 사용
-            source: 'P_R_P',
-            paint: {
-                'line-color': '#EB1700',   // 테두리 색상
-                'line-width': 2,
-                'line-opacity':0             // 테두리 두께
-            },layout: {
-                'visibility': 'visible'  // Explicitly set visibility to visible
-            }
-        });
-        map9.addLayer({
-            id: 'G_P-Circle',
-            type: 'circle',
-            source: 'G_P',
-            paint: {
-                'circle-radius': 1,
-                'circle-color': '#fffff0',
-                'circle-opacity': 1
-            },layout: {
-                'visibility': 'visible'  // Explicitly set visibility to visible
-            }
-        });
-    });*/
-
+    
     const toggleAmazonButton = document.getElementById('toggleAmazon');
     toggleAmazonButton.addEventListener('click', () => {
         const currentVisibility = map2.getLayer('Amazon-Circle') ? map2.getLayer('Amazon-Circle').visibility : 'visible';
