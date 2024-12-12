@@ -639,6 +639,9 @@ map2.on('load', () => {
                 'line-color': '#f7941d',   // 테두리 색상
                 'line-width': 1,
                 'line-opacity':1             // 테두리 두께
+            },
+            layout: {
+                'visibility': 'none'   // 선 끝부분을 둥글게 처리
             }
         });
 
@@ -649,6 +652,9 @@ map2.on('load', () => {
             paint: {
                 'fill-color': '#f7941d',    // 다각형 영역 색상
                 'fill-opacity': 0.33         // 투명도 설정
+            },
+            layout: {
+                'visibility': 'none'   // 선 끝부분을 둥글게 처리
             }
         });
 
