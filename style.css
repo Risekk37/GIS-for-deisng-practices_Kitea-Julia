@@ -60,21 +60,21 @@ body {
     top: 20px;
     right: 20px;
     z-index: 1000;
-    display: none; /* 기본적으로 숨기기 */
+    display: none; 
 }
 
 #gm-slider {
-    -webkit-appearance: none; /* 기본 브라우저 스타일 제거 */
+    -webkit-appearance: none; 
     position: absolute;
     appearance: none;
     top: 30px;
     right: 30px;
-    width: 200%; /* 슬라이더의 너비를 컨테이너에 맞춤 */
-    height: 15px; /* 슬라이더 바 높이 */
-    background: linear-gradient(to right, #fffff0, #f7941d); /* 그라데이션 슬라이더 바 */
-    border-radius: 5px; /* 둥근 모서리 */
+    width: 200%; 
+    height: 15px; 
+    background: linear-gradient(to right, #fffff0, #f7941d); 
+    border-radius: 5px; 
     outline: none;
-    transition: background 0.3s ease-in-out; /* 부드러운 전환 효과 */
+    transition: background 0.3s ease-in-out; 
     cursor: pointer;
 }
 
@@ -82,16 +82,16 @@ body {
 #gm-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 20px; /* 손잡이 크기 */
+    width: 20px; 
     height: 20px;
-    background: #fffff0; /* 손잡이 색상 */
-    border-radius: 50%; /* 둥근 손잡이 */
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* 손잡이 그림자 */
-    transition: background 0.3s ease-in-out; /* 부드러운 전환 효과 */
+    background: #fffff0; 
+    border-radius: 50%; 
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); 
+    transition: background 0.3s ease-in-out; 
 }
 
 #gm-slider::-webkit-slider-thumb:hover {
-    background: #FF5722; /* 손잡이 호버 색상 */
+    background: #FF5722; 
 }
 
 #gm-slider::-moz-range-thumb {
@@ -121,28 +121,28 @@ body {
 #gm-slider::-ms-thumb:hover {
     background: #FF7043;
 }
-/* 흰색 박스 스타일링 */
+
 #slider-background {
     position: absolute;
-    top: 10px; /* 컨트롤의 상단에 배치 */
-    Right: 20px; /* 컨트롤의 왼쪽에 배치 */
-    width: 220%; /* 컨트롤 너비를 꽉 채움 */
-    height: 280%; /* 컨트롤 높이를 꽉 채움 */
-    background: rgba(255, 255, 255, 0.8); /* 반투명 흰색 배경 */
-    border-radius: 10px; /* 둥근 모서리 */
-    z-index: -1; /* 배경을 뒤로 보냄 */
+    top: 10px; 
+    Right: 20px; 
+    width: 220%; 
+    height: 280%; 
+    background: rgba(255, 255, 255, 0.8); 
+    border-radius: 10px; 
+    z-index: -1; 
 }
-/* 레이블 스타일 */
+
 #gm-slider-label {
     position: relative;
-    top: 10px; /* 박스 상단에서의 거리 */
-    right: 30px; /* 박스 오른쪽에서의 거리 */
-    font-size: 16px; /* 글자 크기 */
-    font-weight: bold; /* 글자 두께 */
-    color: #333333; /* 글자 색상 */
-    font-family: Arial, sans-serif; /* 글꼴 */
-    z-index: 1; /* 배경 박스 위로 */
-    background: none; /* 투명 배경 */
+    top: 10px; 
+    right: 30px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    color: #333333; 
+    font-family: Arial, sans-serif; 
+    z-index: 1; 
+    background: none; 
 }
 
 .slider-label-left {
@@ -151,7 +151,7 @@ body {
     font-weight: bold;
     color: #333333;
     font-family: Arial, sans-serif;
-    top: 50px; /* y축 위치 */
+    top: 50px; 
     right: 300px;
 }
 .slider-label-middle {
@@ -160,7 +160,7 @@ body {
     font-weight: bold;
     color: #333333;
     font-family: Arial, sans-serif;
-    top: 50px; /* y축 위치 */
+    top: 50px; 
     right: 175px;
 }
 
@@ -170,7 +170,7 @@ body {
     font-weight: bold;
     color: #333333;
     font-family: Arial, sans-serif;
-    top: 50px; /* y축 위치 */
+    top: 50px; 
     right: 30px;
 }
 button {
@@ -184,68 +184,56 @@ button {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* 기본 스타일 */
 button:hover {
-    transition: background-color 0.3s ease; /* 부드러운 전환 효과 */
+    transition: background-color 0.3s ease; 
 }
 
-/* Amazon 버튼 */
 #toggleAmazon:hover {
-    background-color: #cc0000; /* 오렌지색 */
+    background-color: #cc0000; 
 }
 
-/* UPS 버튼 */
 #toggleUPS:hover {
-    background-color: #FFD800; /* 보라색 */
+    background-color: #FFD800;
 }
 
-/* Target 버튼 */
 #toggleTarget:hover {
-    background-color: #cc0000; /* 빨간색 */
+    background-color: #cc0000;
 }
 
-/* Trader Joe's 버튼 */
 #toggleTrader:hover {
-    background-color: #ff69b4; /* 금색 */
+    background-color: #ff69b4; 
 }
 
-/* Walmart 버튼 */
 #toggleWalmart:hover {
-    background-color: #ffc220; /* 파란색 */
+    background-color: #ffc220;
 }
 
-/* Whole Food 버튼 */
 #toggleWhole:hover {
-    background-color: #00674b; /* 초록색 */
+    background-color: #00674b; 
 }
 
-/* DoorDash 버튼 */
 #toggleDoorDash:hover {
-    background-color: #EB1700; /* 다크 오렌지 */
+    background-color: #EB1700; 
 }
 
-/* Grubhub 버튼 */
 #toggleGrubHub:hover {
-    background-color: #FFA943; /* 다크 바이올렛 */
+    background-color: #FFA943; 
 }
 
-/* UberEats 버튼 */
 #toggleUberEats:hover {
-    background-color: #4CFFB4; /* 포레스트 그린 */
+    background-color: #4CFFB4; 
 }
-/* Delivery Desert 5k Pop 버튼 */
+
 #toggleD_GM:hover {
-    background-color: #EB1700; /* 라이트 시그린 */
+    background-color: #EB1700; 
 }
 
-/* Food + Delivery Desert 5k Pop 버튼 */
 #toggleF_D_GM:hover {
-    background-color: #f7941d; /* 블루 바이올렛 */
+    background-color: #f7941d; 
 }
 
-/* Case Study Areas 버튼 */
 #toggleF_D_GM_P:hover {
-    background-color: #ffff88; /* 브라운 */
+    background-color: #ffff88; 
 }
 
 mi {
@@ -255,57 +243,53 @@ mi {
     right: 55.5vw;
     font-weight: bold;
 }
-/* 전체 컨테이너 스타일 */
+
 #map8 {
     position: relative;
     width: 100%;
-    height: 100vh; /* 화면 전체 높이 */
+    height: 100vh; 
     overflow: hidden;
 }
 
-/* 맵 반쪽 스타일 */
 .map-half {
     position: absolute;
     top: 0;
     height: 100%;
 }
 
-/* 왼쪽 맵 스타일 */
 #map8Left {
     left: 0;
-    width: 100%; /* 기본적으로 화면의 절반 */
+    width: 100%; 
 }
 
-/* 오른쪽 맵 스타일 */
 #map8Right {
     right: 0;
-    width: 100%; /* 화면의 절반 */
+    width: 100%; 
     clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
 }
 
 #map8-slider {
     position: absolute;
-    top: 50%; /* 화면의 중간 */
+    top: 50%; 
     left: 0;
-    width: 100%; /* 화면 전체 너비 */
-    z-index: 10; /* 맵보다 위에 배치 */
-    transform: translateY(-50%); /* 슬라이더를 수직 가운데 정렬 */
-    pointer-events: auto; /* 사용자 상호작용 활성화 */
-    -webkit-appearance: none; /* Safari */
-    appearance: none; /* 기본 스타일 제거 */
-    background: transparent; /* 슬라이더 트랙 배경 제거 */
+    width: 100%; 
+    z-index: 10; 
+    transform: translateY(-50%); 
+    pointer-events: auto; 
+    -webkit-appearance: none; 
+    appearance: none; 
+    background: transparent; 
 }
 
-/* 슬라이더의 핸들 (중앙의 점) */
 #map8-slider::-webkit-slider-thumb {
-    -webkit-appearance: none; /* 기본 핸들 스타일 제거 */
-    appearance: none; /* 기본 핸들 스타일 제거 */
-    width: 30px; /* 핸들의 너비 */
-    height: 5px; /* 핸들의 높이 */
-    background-color: #fffff0; /* 핸들의 색상 (흰색) */
+    -webkit-appearance: none; 
+    appearance: none; 
+    width: 30px; 
+    height: 5px; 
+    background-color: #fffff0; 
     border: circle;
-    border-radius: 1; /* 사각형 모양 */
-    cursor: ew-resize; /* 좌우 이동 시 커서 변경 */
+    border-radius: 1; 
+    cursor: ew-resize; 
     position: relative;
 }
 
@@ -313,12 +297,13 @@ mi {
     position: absolute;
     bottom: 3vh;
     right: 1.5vw;
-    width: 22%; /* 맵 크기에 맞춰 조정 */
+    width: 22%; 
     height: 5%;
-    object-fit: contain; /* 이미지 비율 유지 */
-    pointer-events: none; /* 지도의 인터랙션 유지 */
-    z-index: 3; /* 맵 위에 표시되도록 설정 */
+    object-fit: contain; 
+    pointer-events: none; 
+    z-index: 3; 
 }
+
 #map-buttons {
     position: fixed;
     left: 10px;
@@ -327,34 +312,34 @@ mi {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px; /* 버튼 간격 추가 */
+    gap: 10px; 
 }
 
 #map-buttons button {
-    all: unset; /* 기본 스타일 제거 */
-    width: 20px; /* 동그라미 크기 */
-    height: 20px; /* 원형 크기 */
-    background-color: transparent; /* 내부는 투명 */
-    border: 2px solid rgba(255, 255, 255, 0.7); /* 테두리만 표시 */
-    border-radius: 50%; /* 원형으로 만들기 */
+    all: unset; 
+    width: 20px; 
+    height: 20px; 
+    background-color: transparent; 
+    border: 2px solid rgba(255, 255, 255, 0.7); 
+    border-radius: 50%; 
     cursor: pointer;
-    position: relative; /* 선 연결을 위해 필요 */
+    position: relative; 
     transition: border-color 0.3s;
 }
 
 #map-buttons button:hover {
-    border-color: rgba(255, 255, 255, 0.8); /* 호버 시 테두리 색 변경 */
+    border-color: rgba(255, 255, 255, 0.8); 
 }
 
 #map-buttons button + button::after {
     content: '';
     position: absolute;
-    top: -13px; /* 선의 시작 위치 조정 */
+    top: -13px; 
     left: 50%;
     transform: translateX(-50%);
-    width: 2px; /* 선 두께 */
-    height: 12px; /* 선 길이 */
-    background-color: rgba(255, 255, 255, 0.5); /* 선 색상 */
-    z-index: -1; /* 선이 버튼 뒤로 가도록 */
+    width: 2px; 
+    height: 12px; 
+    background-color: rgba(255, 255, 255, 0.5); 
+    z-index: -1; 
 }
 
